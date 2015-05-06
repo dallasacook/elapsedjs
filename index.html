@@ -1,0 +1,317 @@
+<html>
+	<head>
+		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	</head>
+	<body>
+
+	<h4>You received this notification <span class="elapsed"></span></h4>
+
+	<span class="elapsed" data-elapsed-time="1430953073"></span>
+
+	<script>
+
+	$(document).ready(function(){
+
+		/*
+		 * ElapsedJS
+		 *
+		 * A jQuery plugin that calculates the amount of
+		 * @author Dallas Cook
+		 *
+		*/
+
+		(function($) {
+
+			var settings = {};
+
+			//"Exact times", remove 'over' options
+			/* - just occurred (or something)
+			 * 0. one second ago
+			 * 1. a few seconds ago
+			 * 2. over thirty seconds ago
+			 * 3. one minute ago
+			 * 4. over one minute ago
+			 * 5. two minutes ago
+			 * 6. over two minutes ago
+			 * 7. three minutes ago
+			 * 8. over three minutes ago
+			 * 9. four minutes ago
+			 * 10. over four minutes ago
+			 * 11. five minutes ago
+			 * 12. over five mintues ago
+			 * 13. six minutes ago
+			*/
+
+
+			var numStr = {
+				'single' :  [
+						'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'
+					],
+				'double' : [
+						'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
+						'eighteen', 'nineteen'
+				],
+				'tens' : [
+					'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'
+				]
+			}
+
+
+			/*
+			 * getElapsedTimePhrase
+			 *
+			 * Determine how to build phrase and return formatted string for
+			 * rendering. Returns string and time difference object
+			 *
+			 * @return object
+			*/
+			function getElapsedTimePhrase(attrTime) {
+
+				var startTime = 0;
+
+				//If start time element attribute exists, override settings on instantiation
+				if(attrTime !== undefined) {
+					startTime = attrTime;
+				} else {
+					startTime = settings.startTime;
+				}
+
+				//Calculate the difference in start and end time
+				var diff = getTimeDiff(startTime, settings.unix);
+
+				//If number setting is true, convert integer number to its word representation
+				if(!(diff.year > 0) && !(diff.month > 0) && !(diff.week > 0)
+				    && !(diff.day > 0) && !(diff.hour > 0) && !(diff.minute > 0)
+					&& diff.second <= 0) {
+					str = diff.second < 0 ? settings.beforePhrase : settings.initPhrase;
+				} else {
+					str = renderElapsedPhrase(diff);
+				}
+
+				return { 'str' : str, 'diff' : diff };
+			}
+
+			/*
+			 * renderElapsedPhrase
+			 *
+			 * Accepts an object containing elapsed years, months, weeks, days,
+			 * hours, minutes, and seconds. This is used to build the string.
+			 *
+			 *
+			 * @return string
+			*/
+
+			function renderElapsedPhrase(n){
+
+				var word = '';
+				var str = '';
+
+				for(var unit in n) {
+					if(n[unit]) {
+
+						var theNum = n[unit];
+
+						if(settings.exact==false && theNum < 5) {
+						  str = (theNum === 1) ? 'a ' + unit : 'a few ' + unit + 's';
+						  word += str + ' ' + settings.appendPhrase;
+						} else {
+							//If num settings is true, convert integer to string equivalent
+							if(settings.number === 'string') {
+								if(theNum < 10) {
+									str = numStr.single[theNum];
+								} else if(theNum >= 10 && theNum < 20) {
+									str = numStr.double[theNum-10];
+								} else if(theNum >= 20 && theNum < 100) {
+									for(var i = 20; theNum >= i; i+=10) {
+										var singleDigit = (theNum-i > 0) ? '-' + numStr.single[theNum-i] : '';
+										str = numStr.tens[(String(theNum).charAt(0)-2)] + singleDigit;
+									}
+								}
+							} else {
+								//Add integer to string
+								str = theNum+'';
+							}
+							word += (theNum > 1) ? str+' '+unit+'s' : str+' '+unit;
+							word += ' ' + settings.appendPhrase;
+						}
+
+						break;
+					}
+				}
+				return word;
+
+			}
+
+			/*
+			 * getTimeDiff
+			 *
+			 * Accepts unix timestamp or ISO formatted date
+			 * Gets the difference between current and start,
+			 * essentially calculated elapsed time.
+			 *
+			 * @return object
+			*/
+			function getTimeDiff(startTime, unix) {
+
+				var s = 0;
+				var c = new Date();
+
+				if(unix) {
+					s = new Date(startTime*1000);
+				} else {
+					s = new Date(String(startTime));
+				}
+
+				//Get time difference in seconds
+				var d = (c.getTime() - s.getTime()) / 1000 ;
+
+				var diff = {
+					'year' : Math.floor(d/31556926),
+					'month' : Math.floor(d/2629743),
+					'week' : Math.floor((Math.floor(d/86400)/7)),
+					'day' : Math.floor(d/86400),
+					'hour' : Math.floor(d/3600),
+					'minute' : Math.floor(d/60),
+					'second' : Math.floor(d)
+				};
+
+				return diff;
+			}
+
+			/*
+			 * renderElements
+			 *
+			 * Renders new string to the default or provided selector DOM element(s).
+			 *
+			 * @return none
+			*/
+			var elements = [];
+
+			function renderElements(el) {
+				$(document).find(settings.selector).each(function(index) {
+
+					var attrTime = $(this).attr('data-elapsed-time');
+					var elapsed = getElapsedTimePhrase(attrTime);
+
+					$(this).html(settings.prependPhrase + ' ' + elapsed.str);
+
+					//Update interval to run depending on elapsed time for each element
+					var interval = getRunInterval(elapsed.diff);
+
+					if(interval.run) {
+						var theInterval = setInterval(renderElement(this), interval.time);
+						elements[index] = { 'el' : this, 'int' : theInterval };
+					}
+				});
+			}
+
+			function renderElement(el) {
+
+				console.log(elements);
+				var attrTime = $(el).attr('data-elapsed-time');
+				var elapsed = getElapsedTimePhrase(attrTime);
+
+				$(el).html(settings.prependPhrase + ' ' + elapsed.str);
+
+				//Update interval to run depending on elapsed time for each element
+				var interval = getRunInterval(elapsed.diff);
+				console.log(interval);
+				if(!interval.run) {
+					//clearInterval(theInterval);
+				}
+			}
+
+			/*
+			 * getRunInterval
+			 *
+			 * Set run interval for updating elapsed phrase.
+			 *
+			 * If delay option is true, run interval on increments of 5, 10, and 30 (seconds & minutes)
+			 *
+			 * @return void
+			*/
+			function getRunInterval(diff) {
+
+				var interval = { 'run' : false, 'time' : settings.interval };
+
+				//Check object before running interval
+				if(diff.day > 0) {
+					interval.run = false;
+				} else if(diff.hour > 0) {
+					interval.run = false;
+				} else if(diff.minute > settings.stopIntervalMinutes) {
+					interval.run = false;
+				} else {
+					interval.run = true;
+				}
+
+				if(settings.delay === true && diff.minute  < settings.stopIntervalMinutes) {
+					//Shorten interval for minutes & seconds while respecting initial load time
+					if(diff.minute >= 10) {
+						//Update every 10 minutes
+						interval.time  =  (diff.minute > 10) ? (1800000 - (diff.minute * 60000)) : 600000;
+					} else if(diff.minute >= 5) {
+						//Update every 5 minute
+						interval.time  =  (diff.minute > 5) ? (600000 - (diff.minute * 60000)) : 300000;
+					} else if(diff.minute > 0) {
+						//Update every 1 minute
+						interval.time  = 60000;
+					} else if(diff.second >= 30) {
+						//Update every 30 seconds
+						interval.time  = (diff.second > 30) ? (60000 - (diff.second * 1000)) : 30000;
+					}  else if(diff.second >= 10) {
+						//Update every 10 seconds
+						interval.time  = (diff.second > 10 ) ? (30000 - (diff.second * 1000)) : 10000;
+					} else if(diff.second >= 5) {
+						//Update every 5 seconds
+						interval.time  = (diff.second > 5) ? (10000 - (diff.second * 1000)) : 5000;
+					}
+
+				}
+
+				return interval;
+			}
+
+			$.Elapsed = function(options) {
+
+				settings = $.extend({}, $.Elapsed.defaults, options);
+
+				renderElements();
+
+				return this;
+			}
+
+			$.Elapsed.defaults = {
+				beforePhrase: 'has not yet occurred.', //Display if current date is less than the provided start
+				initPhrase: 'just occurred.', //Phrase
+				appendPhrase: 'ago', //Phrase added to end of string
+				prependPhrase: '', //Leading phrase prepended if provided
+				shorthand: false, //minutes vs m, seconds vs s, hour vs h
+				startTime: 0,
+				unix: false, //if passing unix timestamp from php - for properly converts using Javascript Date
+				selector: '.elapsed', //ID or Class
+				number: 'string', //string or integer : 'one' or '1'
+				exact: true, //True displays the exact number, no abbreviations (a few minutes ago)
+				interval: 10000, //Determines how quickly the element is updated
+				delay: true, //if true delay the interval after 5 & 10 seconds and after 1, 5 and 10 minutes.
+				stopIntervalMinutes: 30 //Number of minutes to stop the the interval
+			};
+
+		})(jQuery);
+
+		$.Elapsed({
+			startTime: 1430946862,
+			interval: 1000,
+			unix: true,
+			initPhrase: 'just happened.',
+			//appendPhrase: 'in the past',
+			number: 'integer',
+			delay: true,
+			exact: false
+		});
+
+	});
+	</script>
+
+	</body>
+</html>

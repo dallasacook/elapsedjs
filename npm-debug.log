@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'express' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'express', null ]
+5 verbose cache add name=undefined spec="express" args=["express",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'express',
+6 verbose parsed url   path: 'express',
+6 verbose parsed url   href: 'express' }
+7 silly lockFile f3c62de4-express express
+8 verbose lock express /Users/dallasacook/.npm/f3c62de4-express.lock
+9 silly lockFile f3c62de4-express express
+10 error Error: Attempt to unlock express, which hasn't been locked
+10 error     at unlock (/usr/local/lib/node_modules/npm/lib/utils/locker.js:44:11)
+10 error     at cb (/usr/local/lib/node_modules/npm/lib/cache/add-local.js:30:5)
+10 error     at /usr/local/lib/node_modules/npm/lib/cache/add-local.js:47:20
+10 error     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:30:7
+10 error     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+10 error     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+10 error     at Object.oncomplete (fs.js:107:15)
+11 error If you need help, you may report this *entire* log,
+11 error including the npm and node versions, at:
+11 error     <http://github.com/npm/npm/issues>
+12 error System Darwin 13.4.0
+13 error command "node" "/usr/local/bin/npm" "install" "express"
+14 error cwd /Users/dallasacook/plugins/elapsed
+15 error node -v v0.10.33
+16 error npm -v 1.4.28
+17 verbose exit [ 1, true ]
