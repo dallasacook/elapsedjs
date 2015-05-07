@@ -1,0 +1,320 @@
+{
+    "project": {},
+    "files": {
+        "elapsed.js": {
+            "name": "elapsed.js",
+            "modules": {},
+            "classes": {
+                "Elapsed": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Elapsed": {
+            "name": "Elapsed",
+            "shortname": "Elapsed",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "elapsed.js",
+            "line": 20,
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "elapsed.js",
+            "line": 2,
+            "description": "Elapsed JS v 0.1\n\nA jQuery plugin that calculates the amount of time elapsed between\na given time, such as an event, and the current time which updates\nin real time on any given selector or by the default 'elapsed' class.",
+            "author": "Dallas Cook",
+            "date": "5/6/2015\n\nGNU GENERAL PUBLIC LICENSE",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 34,
+            "description": "The elapsed defaults object contains a set of overridable parameters,\nwhich gives developers full control over the plugin.",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "{Object}",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 42,
+            "description": "Displays if current time is less than the provided start time",
+            "itemtype": "property",
+            "name": "futurePhrase",
+            "type": "String",
+            "default": "'has not yet occurred'",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 50,
+            "description": "Word or phrase displayed when current time equals provided start time",
+            "itemtype": "property",
+            "name": "initPhrase",
+            "type": "String",
+            "default": "'just occurred'",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 58,
+            "description": "Word or phrase added to end of the final string",
+            "itemtype": "property",
+            "name": "appendPhrase",
+            "type": "String",
+            "default": "'ago'",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 66,
+            "description": "Word or phrase added to beginning of the final string",
+            "itemtype": "property",
+            "name": "prependPhrase",
+            "type": "String",
+            "default": "''",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 74,
+            "description": "Turns on shorthand for hours, minutes, & seconds",
+            "itemtype": "property",
+            "name": "shortHand",
+            "type": "Boolean",
+            "default": "false",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 82,
+            "description": "Overridable shorthand values for hours, minutes, & seconds",
+            "itemtype": "property",
+            "name": "shortHand",
+            "type": "Object",
+            "default": "{'hour' : 'hr', 'minute' : 'min', 'second' : 'sec' }",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 90,
+            "description": "Start time property",
+            "itemtype": "property",
+            "name": "startTime",
+            "type": "Integer",
+            "default": "0",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 98,
+            "description": "Used to properly convert a UNIX timestamp using Javascript Date such\nas if passing UNIX timestamp from PHP as startTime property.",
+            "itemtype": "property",
+            "name": "unix",
+            "type": "Integer",
+            "default": "false",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 107,
+            "description": "The default selector property. Can be an HTML tag, class or ID. Basically\nanything accepted by jQuery's Selector.",
+            "itemtype": "property",
+            "name": "selector",
+            "type": "string",
+            "default": "'.elapsed'",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 116,
+            "description": "Determintes whether or not to display the number in the phrase as a\nstring or an integer. Specified by 'string' and 'integer'.\n\nEx. One vs. 1",
+            "itemtype": "property",
+            "name": "number",
+            "type": "string",
+            "default": "'string'",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 127,
+            "description": "If true, the exact property displays each number in the interval without\nabbreviations such as \"a few minutes ago\".",
+            "itemtype": "property",
+            "name": "exact",
+            "type": "Boolean",
+            "default": "true",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 136,
+            "description": "The default interval at which to update the DOM element with the\nnew elapsed time phrase.",
+            "itemtype": "property",
+            "name": "interval",
+            "type": "integer",
+            "default": "1000",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 145,
+            "description": "If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes. \nIf false, active intervals will run at 'interval' time\n\nSettings to false can greatly increase the call stack.",
+            "itemtype": "property",
+            "name": "delay",
+            "type": "Boolean",
+            "default": "true",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 156,
+            "description": "The number of minutes at which to stop the interval.",
+            "itemtype": "property",
+            "name": "stopIntervalMinutes",
+            "type": "integer",
+            "default": "30",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 166,
+            "description": "Begins rendering elements on object instantiation",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "void"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 178,
+            "description": "An object made up three arrays. It includes array of word equivalents of single \ndigit numbers, double digit teens and all those divisible by 10.\n\nUsed to convert integers to strings. Up to 'ninety-nine', which serves the purpose\nof this plugin since days beyond 'thirty-one' are not displayed.",
+            "itemtype": "property",
+            "name": "numStr",
+            "type": "{Object}",
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 202,
+            "description": "Determines how to build phrase and return the formatted phrase for\nrendering. Returns a string and time difference object.",
+            "itemtype": "method",
+            "name": "getElapsedTimePhrase",
+            "return": {
+                "description": "Returns an object containing a string (phrase) and integer (time difference).",
+                "type": "Object"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 235,
+            "description": "Accepts an object containing elapsed years, months, weeks, days,\nhours, minutes, and seconds. This is used to build the string.",
+            "itemtype": "method",
+            "name": "renderElapsedPhrase",
+            "return": {
+                "description": "word Returns a phrase based on the time difference object",
+                "type": "String"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 282,
+            "description": "Accepts a UNIX timestamp or ISO formatted date as \nwell as any other date accepted by the native JavaScript\nDate object. The 'unix' attribute must be set to true/false\nfor a UNIX timestamp to be accepted.\n\nGets the difference between current and start times,\ncalculating the time elapsed and building an object.",
+            "itemtype": "method",
+            "name": "getTimeDiff",
+            "params": [
+                {
+                    "name": "startTime",
+                    "description": "Date time object (ISO, UNIX (seconds), JS Time (milliseconds))",
+                    "type": "Object"
+                },
+                {
+                    "name": "unix",
+                    "description": "True/False allows use of UNIX timestamp",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Always returns object",
+                "type": "Object"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 334,
+            "description": "Renders a new string to the default or provided selector's DOM element(s)\nin a jQuery each() loop, after which renderElement() is called with\nthe proper time interval to continually (recursively) update the object. If the\ninterval.run property returns false, then the recursion ends.",
+            "itemtype": "method",
+            "name": "renderElements",
+            "params": [
+                {
+                    "name": "none",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 368,
+            "description": "This is a recursive function which is called\nafter each selected object is initially rendered.\nThis enables the object to continue updating itself\nuntil its interval.run property returns false.",
+            "itemtype": "method",
+            "name": "renderElement",
+            "params": [
+                {
+                    "name": "$el",
+                    "description": "A jQuery object to update recursively on interval",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": "Elapsed"
+        },
+        {
+            "file": "elapsed.js",
+            "line": 395,
+            "description": "Sets the run interval in milliseconds for updating the DOM element. The interval \nstops after running for a specified or default (30) number of minutes.\n\nIf delay option is true, the interval runs on increments of 5, 10, and 30 (seconds & minutes).\nIf the initial load time of the difference is greater than the smaller digit, the difference\nis calculated as the interval.\n\nTernary operations calculate the difference between the next increment so as to set\nan accurate interval in milliseconds.",
+            "itemtype": "method",
+            "name": "getRunInterval",
+            "params": [
+                {
+                    "name": "diff",
+                    "description": "Contains the difference in start and current time.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "interval Returns a boolean for run and the interval in seconds.",
+                "type": "Object"
+            },
+            "class": "Elapsed"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: date",
+            "line": " elapsed.js:2"
+        },
+        {
+            "message": "Missing item type\nElapsed JS v 0.1\n\nA jQuery plugin that calculates the amount of time elapsed between\na given time, such as an event, and the current time which updates\nin real time on any given selector or by the default 'elapsed' class.",
+            "line": " elapsed.js:2"
+        }
+    ]
+}

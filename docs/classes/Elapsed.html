@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Elapsed</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Elapsed.html">Elapsed</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>Elapsed Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/elapsed.js.html#l20"><code>elapsed.js:20</code></a>
+        </div>
+
+
+</div>
+
+
+<div class="box intro">
+    
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_Elapsed" class="method item">
+    <h3 class="name"><code>Elapsed</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l20"><code>elapsed.js:20</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_getElapsedTimePhrase">getElapsedTimePhrase</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getRunInterval">getRunInterval</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getTimeDiff">getTimeDiff</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_init">init</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_renderElapsedPhrase">renderElapsedPhrase</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_renderElement">renderElement</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_renderElements">renderElements</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_appendPhrase">appendPhrase</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_defaults">defaults</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_delay">delay</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_exact">exact</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_futurePhrase">futurePhrase</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initPhrase">initPhrase</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_interval">interval</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_number">number</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_numStr">numStr</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_prependPhrase">prependPhrase</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_selector">selector</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_shortHand">shortHand</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_shortHand">shortHand</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_startTime">startTime</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_stopIntervalMinutes">stopIntervalMinutes</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_unix">unix</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_getElapsedTimePhrase" class="method item">
+    <h3 class="name"><code>getElapsedTimePhrase</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l202"><code>elapsed.js:202</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Determines how to build phrase and return the formatted phrase for
+rendering. Returns a string and time difference object.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>Returns an object containing a string (phrase) and integer (time difference).</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getRunInterval" class="method item">
+    <h3 class="name"><code>getRunInterval</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>diff</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l395"><code>elapsed.js:395</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the run interval in milliseconds for updating the DOM element. The interval
+stops after running for a specified or default (30) number of minutes.</p>
+<p>If delay option is true, the interval runs on increments of 5, 10, and 30 (seconds &amp; minutes).
+If the initial load time of the difference is greater than the smaller digit, the difference
+is calculated as the interval.</p>
+<p>Ternary operations calculate the difference between the next increment so as to set
+an accurate interval in milliseconds.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">diff</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>Contains the difference in start and current time.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>interval Returns a boolean for run and the interval in seconds.</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getTimeDiff" class="method item">
+    <h3 class="name"><code>getTimeDiff</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>startTime</code>
+                </li>
+                <li class="arg">
+                        <code>unix</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l282"><code>elapsed.js:282</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Accepts a UNIX timestamp or ISO formatted date as
+well as any other date accepted by the native JavaScript
+Date object. The 'unix' attribute must be set to true/false
+for a UNIX timestamp to be accepted.</p>
+<p>Gets the difference between current and start times,
+calculating the time elapsed and building an object.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">startTime</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>Date time object (ISO, UNIX (seconds), JS Time (milliseconds))</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">unix</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>True/False allows use of UNIX timestamp</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>Always returns object</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l166"><code>elapsed.js:166</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Begins rendering elements on object instantiation</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>void</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_renderElapsedPhrase" class="method item">
+    <h3 class="name"><code>renderElapsedPhrase</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l235"><code>elapsed.js:235</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Accepts an object containing elapsed years, months, weeks, days,
+hours, minutes, and seconds. This is used to build the string.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>word Returns a phrase based on the time difference object</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_renderElement" class="method item">
+    <h3 class="name"><code>renderElement</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>$el</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l368"><code>elapsed.js:368</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This is a recursive function which is called
+after each selected object is initially rendered.
+This enables the object to continue updating itself
+until its interval.run property returns false.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">$el</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>A jQuery object to update recursively on interval</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>void</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_renderElements" class="method item">
+    <h3 class="name"><code>renderElements</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>none</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/elapsed.js.html#l334"><code>elapsed.js:334</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Renders a new string to the default or provided selector's DOM element(s)
+in a jQuery each() loop, after which renderElement() is called with
+the proper time interval to continually (recursively) update the object. If the
+interval.run property returns false, then the recursion ends.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">none</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>void</p>
+
+            </div>
+        </div>
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                    <div id="property_appendPhrase" class="property item">
+                        <h3 class="name"><code>appendPhrase</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l58"><code>elapsed.js:58</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Word or phrase added to end of the final string</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;ago&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_defaults" class="property item">
+                        <h3 class="name"><code>defaults</code></h3>
+                        <span class="type">Object</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l34"><code>elapsed.js:34</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The elapsed defaults object contains a set of overridable parameters,
+                    which gives developers full control over the plugin.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_delay" class="property item">
+                        <h3 class="name"><code>delay</code></h3>
+                        <span class="type">Boolean</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l145"><code>elapsed.js:145</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>If true, the interval is delayed after 5 &amp; 10 seconds and after 1, 5 &amp; 10 minutes.
+                    If false, active intervals will run at 'interval' time</p>
+                    <p>Settings to false can greatly increase the call stack.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> true</p>
+                    
+                    
+                    </div>
+                    <div id="property_exact" class="property item">
+                        <h3 class="name"><code>exact</code></h3>
+                        <span class="type">Boolean</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l127"><code>elapsed.js:127</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>If true, the exact property displays each number in the interval without
+                    abbreviations such as &quot;a few minutes ago&quot;.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> true</p>
+                    
+                    
+                    </div>
+                    <div id="property_futurePhrase" class="property item">
+                        <h3 class="name"><code>futurePhrase</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l42"><code>elapsed.js:42</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Displays if current time is less than the provided start time</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;has not yet occurred&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_initPhrase" class="property item">
+                        <h3 class="name"><code>initPhrase</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l50"><code>elapsed.js:50</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Word or phrase displayed when current time equals provided start time</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;just occurred&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_interval" class="property item">
+                        <h3 class="name"><code>interval</code></h3>
+                        <span class="type">Integer</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l136"><code>elapsed.js:136</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The default interval at which to update the DOM element with the
+                    new elapsed time phrase.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> 1000</p>
+                    
+                    
+                    </div>
+                    <div id="property_number" class="property item">
+                        <h3 class="name"><code>number</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l116"><code>elapsed.js:116</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Determintes whether or not to display the number in the phrase as a
+                    string or an integer. Specified by 'string' and 'integer'.</p>
+                    <p>Ex. One vs. 1</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;string&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_numStr" class="property item">
+                        <h3 class="name"><code>numStr</code></h3>
+                        <span class="type">Object</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l178"><code>elapsed.js:178</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>An object made up three arrays. It includes array of word equivalents of single
+                    digit numbers, double digit teens and all those divisible by 10.</p>
+                    <p>Used to convert integers to strings. Up to 'ninety-nine', which serves the purpose
+                    of this plugin since days beyond 'thirty-one' are not displayed.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_prependPhrase" class="property item">
+                        <h3 class="name"><code>prependPhrase</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l66"><code>elapsed.js:66</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Word or phrase added to beginning of the final string</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_selector" class="property item">
+                        <h3 class="name"><code>selector</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l107"><code>elapsed.js:107</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The default selector property. Can be an HTML tag, class or ID. Basically
+                    anything accepted by jQuery's Selector.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;.elapsed&#x27;</p>
+                    
+                    
+                    </div>
+                    <div id="property_shortHand" class="property item">
+                        <h3 class="name"><code>shortHand</code></h3>
+                        <span class="type">Object</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l82"><code>elapsed.js:82</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Overridable shorthand values for hours, minutes, &amp; seconds</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> {&#x27;hour&#x27; : &#x27;hr&#x27;, &#x27;minute&#x27; : &#x27;min&#x27;, &#x27;second&#x27; : &#x27;sec&#x27; }</p>
+                    
+                    
+                    </div>
+                    <div id="property_shortHand" class="property item">
+                        <h3 class="name"><code>shortHand</code></h3>
+                        <span class="type">Boolean</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l74"><code>elapsed.js:74</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Turns on shorthand for hours, minutes, &amp; seconds</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> false</p>
+                    
+                    
+                    </div>
+                    <div id="property_startTime" class="property item">
+                        <h3 class="name"><code>startTime</code></h3>
+                        <span class="type">Integer</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l90"><code>elapsed.js:90</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Start time property</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> 0</p>
+                    
+                    
+                    </div>
+                    <div id="property_stopIntervalMinutes" class="property item">
+                        <h3 class="name"><code>stopIntervalMinutes</code></h3>
+                        <span class="type">Integer</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l156"><code>elapsed.js:156</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>The number of minutes at which to stop the interval.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> 30</p>
+                    
+                    
+                    </div>
+                    <div id="property_unix" class="property item">
+                        <h3 class="name"><code>unix</code></h3>
+                        <span class="type">Integer</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/elapsed.js.html#l98"><code>elapsed.js:98</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Used to properly convert a UNIX timestamp using Javascript Date such
+                    as if passing UNIX timestamp from PHP as startTime property.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> false</p>
+                    
+                    
+                    </div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
