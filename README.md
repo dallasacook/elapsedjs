@@ -12,6 +12,7 @@ To view the included examples:
 2. Clone the repository onto your local machine
 3. In terminal or command prompt, browse to the directory and issue the command "node index.js"
 4. Browse to http://localhost:3010 to view the examples. 
+
 Note: To view more current elapsed times, edit the timestamps in the index.html file.
 
 To install Elapsed JS in your app:
@@ -27,7 +28,7 @@ Also the start time object can be in any format accepted by the JavaScript date 
 
 # Docs
 
-Included in the repository in the /docs directory is a detailed outline of the Elapsed object, it's methods and properties.
+Included in the repository in the /docs directory is a detailed outline of the Elapsed object, its methods and properties.
 
 Please report any suggestions or bug fixes.
 
