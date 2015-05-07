@@ -22,7 +22,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "elapsed.js",
-            "line": 20,
+            "line": 18,
             "is_constructor": 1
         }
     },
@@ -37,7 +37,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 34,
+            "line": 30,
             "description": "The elapsed defaults object contains a set of overridable parameters,\nwhich gives developers full control over the plugin.",
             "itemtype": "property",
             "name": "defaults",
@@ -46,7 +46,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 42,
+            "line": 38,
             "description": "Displays if current time is less than the provided start time",
             "itemtype": "property",
             "name": "futurePhrase",
@@ -56,7 +56,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 50,
+            "line": 46,
             "description": "Word or phrase displayed when current time equals provided start time",
             "itemtype": "property",
             "name": "initPhrase",
@@ -66,8 +66,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 58,
-            "description": "Word or phrase added to end of the final string",
+            "line": 54,
+            "description": "Word or phrase added to the end of the final string",
             "itemtype": "property",
             "name": "appendPhrase",
             "type": "String",
@@ -76,8 +76,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 66,
-            "description": "Word or phrase added to beginning of the final string",
+            "line": 62,
+            "description": "Word or phrase added to the beginning of the final string",
             "itemtype": "property",
             "name": "prependPhrase",
             "type": "String",
@@ -86,7 +86,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 74,
+            "line": 70,
             "description": "Turns on shorthand for hours, minutes, & seconds",
             "itemtype": "property",
             "name": "shortHand",
@@ -96,7 +96,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 82,
+            "line": 78,
             "description": "Overridable shorthand values for hours, minutes, & seconds",
             "itemtype": "property",
             "name": "shortHand",
@@ -106,7 +106,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 90,
+            "line": 86,
             "description": "Start time property",
             "itemtype": "property",
             "name": "startTime",
@@ -116,7 +116,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 98,
+            "line": 94,
             "description": "Used to properly convert a UNIX timestamp using Javascript Date such\nas if passing UNIX timestamp from PHP as startTime property.",
             "itemtype": "property",
             "name": "unix",
@@ -126,7 +126,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 107,
+            "line": 103,
             "description": "The default selector property. Can be an HTML tag, class or ID. Basically\nanything accepted by jQuery's Selector.",
             "itemtype": "property",
             "name": "selector",
@@ -136,7 +136,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 116,
+            "line": 112,
             "description": "Determintes whether or not to display the number in the phrase as a\nstring or an integer. Specified by 'string' and 'integer'.\n\nEx. One vs. 1",
             "itemtype": "property",
             "name": "number",
@@ -146,7 +146,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 127,
+            "line": 123,
             "description": "If true, the exact property displays each number in the interval without\nabbreviations such as \"a few minutes ago\".",
             "itemtype": "property",
             "name": "exact",
@@ -156,7 +156,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 136,
+            "line": 132,
             "description": "The default interval at which to update the DOM element with the\nnew elapsed time phrase.",
             "itemtype": "property",
             "name": "interval",
@@ -166,8 +166,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 145,
-            "description": "If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes. \nIf false, active intervals will run at 'interval' time\n\nSettings to false can greatly increase the call stack.",
+            "line": 141,
+            "description": "If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes.\nIf false, active intervals will run at 'interval' time\n\nSettings to false can greatly increase the call stack.",
             "itemtype": "property",
             "name": "delay",
             "type": "Boolean",
@@ -176,7 +176,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 156,
+            "line": 152,
             "description": "The number of minutes at which to stop the interval.",
             "itemtype": "property",
             "name": "stopIntervalMinutes",
@@ -186,7 +186,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 166,
+            "line": 162,
             "description": "Begins rendering elements on object instantiation",
             "itemtype": "method",
             "name": "init",
@@ -197,8 +197,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 178,
-            "description": "An object made up three arrays. It includes array of word equivalents of single \ndigit numbers, double digit teens and all those divisible by 10.\n\nUsed to convert integers to strings. Up to 'ninety-nine', which serves the purpose\nof this plugin since days beyond 'thirty-one' are not displayed.",
+            "line": 174,
+            "description": "An object made up three arrays. It includes array of word equivalents of single\ndigit numbers, double digit teens and all those divisible by 10.\n\nUsed to convert integers to strings. Up to 'ninety-nine', which serves the purpose\nof this plugin since days beyond 'thirty-one' are not displayed.",
             "itemtype": "property",
             "name": "numStr",
             "type": "{Object}",
@@ -206,7 +206,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 202,
+            "line": 198,
             "description": "Determines how to build phrase and return the formatted phrase for\nrendering. Returns a string and time difference object.",
             "itemtype": "method",
             "name": "getElapsedTimePhrase",
@@ -218,7 +218,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 235,
+            "line": 228,
             "description": "Accepts an object containing elapsed years, months, weeks, days,\nhours, minutes, and seconds. This is used to build the string.",
             "itemtype": "method",
             "name": "renderElapsedPhrase",
@@ -230,8 +230,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 282,
-            "description": "Accepts a UNIX timestamp or ISO formatted date as \nwell as any other date accepted by the native JavaScript\nDate object. The 'unix' attribute must be set to true/false\nfor a UNIX timestamp to be accepted.\n\nGets the difference between current and start times,\ncalculating the time elapsed and building an object.",
+            "line": 276,
+            "description": "Accepts a UNIX timestamp or ISO formatted date as\nwell as any other date accepted by the native JavaScript\nDate object. The 'unix' attribute must be set to true/false\nfor a UNIX timestamp to be accepted.\n\nGets the difference between current and start times,\ncalculating the time elapsed and building an object.",
             "itemtype": "method",
             "name": "getTimeDiff",
             "params": [
@@ -254,7 +254,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 334,
+            "line": 329,
             "description": "Renders a new string to the default or provided selector's DOM element(s)\nin a jQuery each() loop, after which renderElement() is called with\nthe proper time interval to continually (recursively) update the object. If the\ninterval.run property returns false, then the recursion ends.",
             "itemtype": "method",
             "name": "renderElements",
@@ -271,7 +271,7 @@
         },
         {
             "file": "elapsed.js",
-            "line": 368,
+            "line": 367,
             "description": "This is a recursive function which is called\nafter each selected object is initially rendered.\nThis enables the object to continue updating itself\nuntil its interval.run property returns false.",
             "itemtype": "method",
             "name": "renderElement",
@@ -289,8 +289,8 @@
         },
         {
             "file": "elapsed.js",
-            "line": 395,
-            "description": "Sets the run interval in milliseconds for updating the DOM element. The interval \nstops after running for a specified or default (30) number of minutes.\n\nIf delay option is true, the interval runs on increments of 5, 10, and 30 (seconds & minutes).\nIf the initial load time of the difference is greater than the smaller digit, the difference\nis calculated as the interval.\n\nTernary operations calculate the difference between the next increment so as to set\nan accurate interval in milliseconds.",
+            "line": 394,
+            "description": "Sets the run interval in milliseconds for updating the DOM element. The interval\nstops after running for a specified or default (30) number of minutes.\n\nIf delay option is true, the interval runs on increments of 5, 10, and 30 (seconds & minutes).\nIf the initial load time of the difference is greater than the smaller digit, the difference\nis calculated as the interval.\n\nTernary operations calculate the difference between the next increment so as to set\nan accurate interval in milliseconds.",
             "itemtype": "method",
             "name": "getRunInterval",
             "params": [

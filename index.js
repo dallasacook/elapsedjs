@@ -7,6 +7,6 @@ app.get('/', function(req, res) {
 
 app.use(express.static(__dirname + '/dist'));
 
-app.listen('3000', function() {
+app.listen('3010', function() {
 	console.log('Node is listening.');
 });

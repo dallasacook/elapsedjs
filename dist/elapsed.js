@@ -8,25 +8,21 @@
  *
  * @author Dallas Cook
  * @date 5/6/2015
- * 
+ *
  * GNU GENERAL PUBLIC LICENSE
  *
 */
 
 (function($) {
 
-	var settings = {};
-
- 	/** 
+ 	/**
  	* @class Elapsed
- 	* @constructor
+ 	* @constructor init
  	*/
 
 	$.Elapsed = function(options) {
 
-		settings = $.extend({}, $.Elapsed.defaults, options);
-
-		init();
+		init(options);
 
 		return this;
 	}
@@ -56,15 +52,15 @@
 		 */
 		initPhrase: 'just occurred',
 		/**
-		 * Word or phrase added to end of the final string
+		 * Word or phrase added to the end of the final string
 		 *
 		 * @property appendPhrase
 		 * @type String
 		 * @default 'ago'
 		 */
-		appendPhrase: 'ago', //
+		appendPhrase: 'ago',
 		/**
-		 * Word or phrase added to beginning of the final string
+		 * Word or phrase added to the beginning of the final string
 		 *
 		 * @property prependPhrase
 		 * @type String
@@ -126,7 +122,7 @@
 		number: 'string',
 		/**
 		 * If true, the exact property displays each number in the interval without
-		 * abbreviations such as "a few minutes ago". 
+		 * abbreviations such as "a few minutes ago".
 		 *
 		 * @property exact
 		 * @type Boolean
@@ -143,7 +139,7 @@
 		 */
 		interval: 1000,
 		/**
-		 * If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes. 
+		 * If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes.
 		 * If false, active intervals will run at 'interval' time
 		 *
 		 * Settings to false can greatly increase the call stack.
@@ -159,28 +155,28 @@
 		 * @property stopIntervalMinutes
 		 * @type integer
 		 * @default 30
-		 */ 
+		 */
 		stopIntervalMinutes: 30
 	};
 
 	/**
 	* Begins rendering elements on object instantiation
-	* 
+	*
 	* @method init
 	* @return void
 	*/
-	function init() {
-	
-		renderElements();
-	
+	function init(options) {
+
+		renderElements(options);
+
 	}
 
 	/**
-	* An object made up three arrays. It includes array of word equivalents of single 
+	* An object made up three arrays. It includes array of word equivalents of single
 	* digit numbers, double digit teens and all those divisible by 10.
 	*
 	* Used to convert integers to strings. Up to 'ninety-nine', which serves the purpose
-	* of this plugin since days beyond 'thirty-one' are not displayed. 
+	* of this plugin since days beyond 'thirty-one' are not displayed.
 	*
 	* @property numStr
 	* @type {Object}
@@ -206,8 +202,7 @@
 	* @method getElapsedTimePhrase
 	* @return {Object} Returns an object containing a string (phrase) and integer (time difference).
 	*/
-	function getElapsedTimePhrase(attrTime) {
-
+	function getElapsedTimePhrase(attrTime, settings) {
 		var startTime = 0;
 
 		//If start time element attribute exists, override settings on instantiation
@@ -218,15 +213,13 @@
 		}
 
 		//Calculate the difference in start and end time
-		var diff = getTimeDiff(startTime, settings.unix);
+		var diff = getTimeDiff(startTime, settings.unix, settings.shorthand);
 
 		//If number setting is true, convert integer number to its word representation
-		if(!(diff.year > 0) && !(diff.month > 0) && !(diff.week > 0)
-		    && !(diff.day > 0) && !(diff.hour > 0) && !(diff.minute > 0)
-			&& diff.second <= 0) {
+		if(!(diff.minute > 0) && diff.second <= 0) {
 			str = diff.second < 0 ? settings.futurePhrase : settings.initPhrase;
 		} else {
-			str = renderElapsedPhrase(diff);
+			str = renderElapsedPhrase(diff, settings);
 		}
 
 		return { 'str' : str, 'diff' : diff };
@@ -240,7 +233,7 @@
 	* @return {String} word Returns a phrase based on the time difference object
 	*/
 
-	function renderElapsedPhrase(n){
+	function renderElapsedPhrase(n, settings){
 
 		var word = '';
 		var str = '';
@@ -280,8 +273,8 @@
 
 	}
 
-	/** 
-	* Accepts a UNIX timestamp or ISO formatted date as 
+	/**
+	* Accepts a UNIX timestamp or ISO formatted date as
 	* well as any other date accepted by the native JavaScript
 	* Date object. The 'unix' attribute must be set to true/false
 	* for a UNIX timestamp to be accepted.
@@ -294,8 +287,7 @@
 	* @param {Boolean} unix True/False allows use of UNIX timestamp
 	* @return {Object} Always returns object
 	*/
-	function getTimeDiff(startTime, unix) {
-
+	function getTimeDiff(startTime, unix, shortHand, shortHandValues) {
 		var s = 0;
 		var c = new Date();
 
@@ -305,16 +297,15 @@
 			s = new Date(startTime);
 		}
 
+			//console.log(startTime, unix, s);
 		//Get time difference in seconds
 		var d = (c.getTime() - s.getTime()) / 1000;
 
-		console.log(startTime, s);
-
 		//Set shorthand abbreviation for time keys
-		if(settings.shortHand) {
-			h = settings.shortHandValues['hour'];
-			m = settings.shortHandValues['minute'];
-			s = settings.shortHandValues['second'];
+		if(shortHand) {
+			h = shortHandValues['hour'];
+			m = shortHandValues['minute'];
+			s = shortHandValues['second'];
 		} else {
 			h = 'hour';
 			m = 'minute';
@@ -347,23 +338,27 @@
 	 *
 	*/
 
-	function renderElements() {
+	function renderElements(options) {
 
-		$(document).find(settings.selector).each(function(index) {
+		var selector = (options.selector !== undefined) ? options.selector : $.Elapsed.defaults.selector;
+
+		$(document).find(selector).each(function(index) {
+			//console.log(options)
+
+			var settings = $.extend({}, $.Elapsed.defaults, options);
 
 			var $this = $(this);
 			var attrTime = $this.attr('data-elapsed-time');
-			var elapsed = getElapsedTimePhrase(attrTime);
+			var elapsed = getElapsedTimePhrase(attrTime, settings);
 
 			$this.html(settings.prependPhrase + ' ' + elapsed.str);
 
 			//Update interval to run depending on elapsed time for each element
-			var interval = getRunInterval(elapsed.diff);
+			var interval = getRunInterval(elapsed.diff, settings);
 
 			if(interval.run) {
-				console.log(this, interval.time);
 				setTimeout(function() {
-					renderElement($this);
+					renderElement($this, settings);
 				}, interval.time);
 			}
 		});
@@ -379,25 +374,25 @@
 	 * @param {Object} $el A jQuery object to update recursively on interval
 	 * @return void
 	 */
-	function renderElement($el) {
-		
+	function renderElement($el, settings) {
+
 		var attrTime = $el.attr('data-elapsed-time');
-		var elapsed = getElapsedTimePhrase(attrTime);
+		var elapsed = getElapsedTimePhrase(attrTime, settings);
 
 		$el.html(settings.prependPhrase + ' ' + elapsed.str);
 
 		//Update interval to run depending on elapsed time for each element
-		var interval = getRunInterval(elapsed.diff);
-		console.log(interval);
+		var interval = getRunInterval(elapsed.diff, settings);
+
 		if(interval.run) {
 			setTimeout(function() {
-				renderElement($el);
+				renderElement($el, settings);
 			}, interval.time);
 		}
 	}
 
 	/**
-	* Sets the run interval in milliseconds for updating the DOM element. The interval 
+	* Sets the run interval in milliseconds for updating the DOM element. The interval
 	* stops after running for a specified or default (30) number of minutes.
 	*
 	* If delay option is true, the interval runs on increments of 5, 10, and 30 (seconds & minutes).
@@ -411,7 +406,7 @@
 	* @param {Object} diff Contains the difference in start and current time.
 	* @return {Object} interval Returns a boolean for run and the interval in seconds.
 	*/
-	function getRunInterval(diff) {
+	function getRunInterval(diff, settings) {
 
 		if(settings.shortHand) {
 			m = settings.shortHandValues['minute'];
@@ -437,19 +432,19 @@
 			if(diffMinute >= 10) {
 				//Update every 10 minutes
 				interval.time  =  (diffMinute > 10) ? (1800000 - (diffMinute * 60000)) : 600000;
-			} else if(diff.minute >= 5) {
+			} else if(diffMinute >= 5) {
 				//Update every 5 minute
 				interval.time  =  (diffMinute > 5) ? (600000 - (diffMinute * 60000)) : 300000;
-			} else if(diff.minute > 0) {
+			} else if(diffMinute > 0) {
 				//Update every 1 minute
 				interval.time  = 60000;
 			} else if(diffSecond >= 30) {
 				//Update every 30 seconds
 				interval.time  = (diffSecond > 30) ? (60000 - (diffSecond * 1000)) : 30000;
-			}  else if(diff.second >= 10) {
+			}  else if(diffSecond >= 10) {
 				//Update every 10 seconds
-				interval.time  = (diff.second > 10 ) ? (30000 - (diffSecond * 1000)) : 10000;
-			} else if(diff.second >= 5) {
+				interval.time  = (diffSecond > 10 ) ? (30000 - (diffSecond * 1000)) : 10000;
+			} else if(diffSecond >= 5) {
 				//Update every 5 seconds
 				interval.time  = (diffSecond > 5) ? (10000 - (diffSecond * 1000)) : 5000;
 			}

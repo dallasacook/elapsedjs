@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="elapsed.js"></script>
+		<script src="elapsed.min.js"></script>
 	</head>
 	<body>
 	<h1>Examples:</h1>
@@ -10,10 +10,15 @@
 	<h4>You received this notification <span class="elapsed"></span></h4>
 
 	<h2>Unix Timestamp, using 'data-elapsed-time' attribute.</h2>
-	<h4>You received this notification <span class="elapsed" data-elapsed-time="1430861090"></span></h4>
+	<h4>You received this notification <span class="elapsed" data-elapsed-time="1431013484"></span></h4>
+
+	<h2>Unix Timestamp, using 'data-elapsed-time' attribute.</h2>
+	<h4>You received this notification <span class="elapsed" data-elapsed-time="1431013280"></span></h4>
 
 	<h2>ISO Date, passed into Elapsed as property & not using default selector</h2>
 	<h4>You received this notification <span id="elapsed"></span></h4>
+
+	<h4>You received this notification <span id="elapsed_2"></span></h4>
 
 	<h5>(Better examples coming soon)</h5>
 	<script>
@@ -22,20 +27,33 @@
 
 		//Multiple Instances, Default Selector
 		$.Elapsed({
-			startTime: 1430972153, //Insert a new UNIX timestamp here
+			startTime: 1431008973, //Insert a new UNIX timestamp here
 			unix: true,
 			number: 'integer',
 			delay: true,
-			exact: false, 
+			exact: true,
 			shorthand: false
 		});
-		//Overriden selector, ISO date
+
+		//Overridden selector, ISO date
 		$.Elapsed({
 			startTime: '2015-05-07T00:08:38-05:00', //Insert a new ISO date here
 			selector: '#elapsed',
 			number: 'integer',
 			delay: true,
-			exact: false, 
+			exact: false,
+			shorthand: false
+		});
+
+
+		//Overridden selector, UNIX date
+		$.Elapsed({
+			startTime: 1431016750, //Insert a new UNIX date here
+			unix: true,
+			selector: '#elapsed_2',
+			number: 'string',
+			delay: true,
+			exact: true,
 			shorthand: false
 		});
 
