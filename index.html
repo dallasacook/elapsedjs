@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="elapsed.min.js"></script>
+		<script src="elapsed.js"></script>
 	</head>
 	<body>
 	<h1>Examples:</h1>
@@ -27,12 +27,12 @@
 
 		//Multiple Instances, Default Selector
 		$.Elapsed({
-			startTime: 1431008973, //Insert a new UNIX timestamp here
+			startTime: 1431031000, //Insert a new UNIX timestamp here
 			unix: true,
 			number: 'integer',
 			delay: true,
 			exact: true,
-			shorthand: false
+			shortHand: true
 		});
 
 		//Overridden selector, ISO date
@@ -42,9 +42,8 @@
 			number: 'integer',
 			delay: true,
 			exact: false,
-			shorthand: false
+			shortHand: false
 		});
-
 
 		//Overridden selector, UNIX date
 		$.Elapsed({
@@ -54,7 +53,7 @@
 			number: 'string',
 			delay: true,
 			exact: true,
-			shorthand: false
+			shortHand: false
 		});
 
 	});

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>elapsed.js</title>
+    <title>dist/elapsed.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -75,7 +75,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: elapsed.js</h1>
+<h1 class="file-heading">File: dist/elapsed.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -159,7 +159,7 @@
 		/**
 		 * Overridable shorthand values for hours, minutes, &amp; seconds
 		 *
-		 * @property shortHand
+		 * @property shortHandValues
 		 * @type Object
 		 * @default {&#x27;hour&#x27; : &#x27;hr&#x27;, &#x27;minute&#x27; : &#x27;min&#x27;, &#x27;second&#x27; : &#x27;sec&#x27; }
 		 */
@@ -378,7 +378,6 @@
 			s = new Date(startTime);
 		}
 
-			//console.log(startTime, unix, s);
 		//Get time difference in seconds
 		var d = (c.getTime() - s.getTime()) / 1000;
 
@@ -424,11 +423,10 @@
 		var selector = (options.selector !== undefined) ? options.selector : $.Elapsed.defaults.selector;
 
 		$(document).find(selector).each(function(index) {
-			//console.log(options)
-
-			var settings = $.extend({}, $.Elapsed.defaults, options);
 
 			var $this = $(this);
+			var settings = $.extend({}, $.Elapsed.defaults, options);
+
 			var attrTime = $this.attr(&#x27;data-elapsed-time&#x27;);
 			var elapsed = getElapsedTimePhrase(attrTime, settings);
 
@@ -443,6 +441,7 @@
 				}, interval.time);
 			}
 		});
+
 	}
 
 	/**

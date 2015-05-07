@@ -1,8 +1,8 @@
 {
     "project": {},
     "files": {
-        "elapsed.js": {
-            "name": "elapsed.js",
+        "dist/elapsed.js": {
+            "name": "dist/elapsed.js",
             "modules": {},
             "classes": {
                 "Elapsed": 1
@@ -21,14 +21,14 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 18,
             "is_constructor": 1
         }
     },
     "classitems": [
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 2,
             "description": "Elapsed JS v 0.1\n\nA jQuery plugin that calculates the amount of time elapsed between\na given time, such as an event, and the current time which updates\nin real time on any given selector or by the default 'elapsed' class.",
             "author": "Dallas Cook",
@@ -36,7 +36,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 30,
             "description": "The elapsed defaults object contains a set of overridable parameters,\nwhich gives developers full control over the plugin.",
             "itemtype": "property",
@@ -45,7 +45,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 38,
             "description": "Displays if current time is less than the provided start time",
             "itemtype": "property",
@@ -55,7 +55,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 46,
             "description": "Word or phrase displayed when current time equals provided start time",
             "itemtype": "property",
@@ -65,7 +65,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 54,
             "description": "Word or phrase added to the end of the final string",
             "itemtype": "property",
@@ -75,7 +75,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 62,
             "description": "Word or phrase added to the beginning of the final string",
             "itemtype": "property",
@@ -85,7 +85,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 70,
             "description": "Turns on shorthand for hours, minutes, & seconds",
             "itemtype": "property",
@@ -95,17 +95,17 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 78,
             "description": "Overridable shorthand values for hours, minutes, & seconds",
             "itemtype": "property",
-            "name": "shortHand",
+            "name": "shortHandValues",
             "type": "Object",
             "default": "{'hour' : 'hr', 'minute' : 'min', 'second' : 'sec' }",
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 86,
             "description": "Start time property",
             "itemtype": "property",
@@ -115,7 +115,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 94,
             "description": "Used to properly convert a UNIX timestamp using Javascript Date such\nas if passing UNIX timestamp from PHP as startTime property.",
             "itemtype": "property",
@@ -125,7 +125,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 103,
             "description": "The default selector property. Can be an HTML tag, class or ID. Basically\nanything accepted by jQuery's Selector.",
             "itemtype": "property",
@@ -135,7 +135,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 112,
             "description": "Determintes whether or not to display the number in the phrase as a\nstring or an integer. Specified by 'string' and 'integer'.\n\nEx. One vs. 1",
             "itemtype": "property",
@@ -145,7 +145,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 123,
             "description": "If true, the exact property displays each number in the interval without\nabbreviations such as \"a few minutes ago\".",
             "itemtype": "property",
@@ -155,7 +155,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 132,
             "description": "The default interval at which to update the DOM element with the\nnew elapsed time phrase.",
             "itemtype": "property",
@@ -165,7 +165,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 141,
             "description": "If true, the interval is delayed after 5 & 10 seconds and after 1, 5 & 10 minutes.\nIf false, active intervals will run at 'interval' time\n\nSettings to false can greatly increase the call stack.",
             "itemtype": "property",
@@ -175,7 +175,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 152,
             "description": "The number of minutes at which to stop the interval.",
             "itemtype": "property",
@@ -185,7 +185,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 162,
             "description": "Begins rendering elements on object instantiation",
             "itemtype": "method",
@@ -196,7 +196,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 174,
             "description": "An object made up three arrays. It includes array of word equivalents of single\ndigit numbers, double digit teens and all those divisible by 10.\n\nUsed to convert integers to strings. Up to 'ninety-nine', which serves the purpose\nof this plugin since days beyond 'thirty-one' are not displayed.",
             "itemtype": "property",
@@ -205,7 +205,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 198,
             "description": "Determines how to build phrase and return the formatted phrase for\nrendering. Returns a string and time difference object.",
             "itemtype": "method",
@@ -217,7 +217,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 228,
             "description": "Accepts an object containing elapsed years, months, weeks, days,\nhours, minutes, and seconds. This is used to build the string.",
             "itemtype": "method",
@@ -229,7 +229,7 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
+            "file": "dist/elapsed.js",
             "line": 276,
             "description": "Accepts a UNIX timestamp or ISO formatted date as\nwell as any other date accepted by the native JavaScript\nDate object. The 'unix' attribute must be set to true/false\nfor a UNIX timestamp to be accepted.\n\nGets the difference between current and start times,\ncalculating the time elapsed and building an object.",
             "itemtype": "method",
@@ -253,8 +253,8 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
-            "line": 329,
+            "file": "dist/elapsed.js",
+            "line": 328,
             "description": "Renders a new string to the default or provided selector's DOM element(s)\nin a jQuery each() loop, after which renderElement() is called with\nthe proper time interval to continually (recursively) update the object. If the\ninterval.run property returns false, then the recursion ends.",
             "itemtype": "method",
             "name": "renderElements",
@@ -270,8 +270,8 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
-            "line": 367,
+            "file": "dist/elapsed.js",
+            "line": 366,
             "description": "This is a recursive function which is called\nafter each selected object is initially rendered.\nThis enables the object to continue updating itself\nuntil its interval.run property returns false.",
             "itemtype": "method",
             "name": "renderElement",
@@ -288,8 +288,8 @@
             "class": "Elapsed"
         },
         {
-            "file": "elapsed.js",
-            "line": 394,
+            "file": "dist/elapsed.js",
+            "line": 393,
             "description": "Sets the run interval in milliseconds for updating the DOM element. The interval\nstops after running for a specified or default (30) number of minutes.\n\nIf delay option is true, the interval runs on increments of 5, 10, and 30 (seconds & minutes).\nIf the initial load time of the difference is greater than the smaller digit, the difference\nis calculated as the interval.\n\nTernary operations calculate the difference between the next increment so as to set\nan accurate interval in milliseconds.",
             "itemtype": "method",
             "name": "getRunInterval",
@@ -310,11 +310,11 @@
     "warnings": [
         {
             "message": "unknown tag: date",
-            "line": " elapsed.js:2"
+            "line": " dist/elapsed.js:2"
         },
         {
             "message": "Missing item type\nElapsed JS v 0.1\n\nA jQuery plugin that calculates the amount of time elapsed between\na given time, such as an event, and the current time which updates\nin real time on any given selector or by the default 'elapsed' class.",
-            "line": " elapsed.js:2"
+            "line": " dist/elapsed.js:2"
         }
     ]
 }

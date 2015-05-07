@@ -1,23 +1,22 @@
 
 /**
  * Elapsed JS v 0.1
- *
- * A jQuery plugin that calculates the amount of time elapsed between
- * a given time, such as an event, and the current time which updates
- * in real time on any given selector or by the default 'elapsed' class.
- *
- * @author Dallas Cook
- * @date 5/6/2015
- *
- * GNU GENERAL PUBLIC LICENSE
- *
+*
+* A jQuery plugin that calculates the amount of time elapsed between
+* a given time, such as an event, and the current time which updates
+* in real time on any given selector or by the default 'elapsed' class.
+*
+* @class Elapsed
+* @author Dallas Cook
+* @date 5/6/2015
+*
+* GNU GENERAL PUBLIC LICENSE
+*
 */
 
 (function($) {
 
  	/**
- 	* @class Elapsed
- 	* @constructor init
  	*/
 
 	$.Elapsed = function(options) {
@@ -78,7 +77,7 @@
 		/**
 		 * Overridable shorthand values for hours, minutes, & seconds
 		 *
-		 * @property shortHand
+		 * @property shortHandValues
 		 * @type Object
 		 * @default {'hour' : 'hr', 'minute' : 'min', 'second' : 'sec' }
 		 */
@@ -213,7 +212,7 @@
 		}
 
 		//Calculate the difference in start and end time
-		var diff = getTimeDiff(startTime, settings.unix, settings.shorthand);
+		var diff = getTimeDiff(startTime, settings);
 
 		//If number setting is true, convert integer number to its word representation
 		if(!(diff.minute > 0) && diff.second <= 0) {
@@ -287,25 +286,24 @@
 	* @param {Boolean} unix True/False allows use of UNIX timestamp
 	* @return {Object} Always returns object
 	*/
-	function getTimeDiff(startTime, unix, shortHand, shortHandValues) {
+	function getTimeDiff(startTime, settings) {
 		var s = 0;
 		var c = new Date();
 
-		if(unix) {
+		if(settings.unix) {
 			s = new Date(startTime*1000);
 		} else {
 			s = new Date(startTime);
 		}
 
-			//console.log(startTime, unix, s);
 		//Get time difference in seconds
 		var d = (c.getTime() - s.getTime()) / 1000;
 
 		//Set shorthand abbreviation for time keys
-		if(shortHand) {
-			h = shortHandValues['hour'];
-			m = shortHandValues['minute'];
-			s = shortHandValues['second'];
+		if(settings.shortHand) {
+			h = settings.shortHandValues.hour;
+			m = settings.shortHandValues.minute;
+			s = settings.shortHandValues.second;
 		} else {
 			h = 'hour';
 			m = 'minute';
@@ -343,11 +341,10 @@
 		var selector = (options.selector !== undefined) ? options.selector : $.Elapsed.defaults.selector;
 
 		$(document).find(selector).each(function(index) {
-			//console.log(options)
-
-			var settings = $.extend({}, $.Elapsed.defaults, options);
 
 			var $this = $(this);
+			var settings = $.extend({}, $.Elapsed.defaults, options);
+
 			var attrTime = $this.attr('data-elapsed-time');
 			var elapsed = getElapsedTimePhrase(attrTime, settings);
 
@@ -362,6 +359,7 @@
 				}, interval.time);
 			}
 		});
+
 	}
 
 	/**
