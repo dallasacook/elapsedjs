@@ -91,14 +91,14 @@
 		 */
 		startTime: 0,
 		/**
-		 * Used to properly convert a UNIX timestamp using Javascript Date such
-		 * as if passing UNIX timestamp from PHP as startTime property.
+		 * dateType designates the type of date parameter that can be
+		 * accepted by Elapsed. Defaults to ISO 8601. Also accepts 'seconds' and 'milliseconds'.
 		 *
-		 * @property unix
-		 * @type Integer
-		 * @default false
+		 * @property dateType
+		 * @type string
+		 * @default 'ISO'
 		 */
-		unix: false,
+		dateType: 'ISO',
 		/**
 		 * The default selector property. Can be an HTML tag, class or ID. Basically
 		 * anything accepted by jQuery's Selector.
@@ -273,25 +273,40 @@
 	}
 
 	/**
-	* Accepts a UNIX timestamp or ISO formatted date as
-	* well as any other date accepted by the native JavaScript
-	* Date object. The 'unix' attribute must be set to true/false
-	* for a UNIX timestamp to be accepted.
+	* Converts an ISO 8601 formatted string into UTC milliseconds and then
+	* adds the local timezone offset.
 	*
+	* @method dateFromISO8601
+	* @param {String} ISO 8601 date string
+	* @return {Integer} Returns milliseconds
+	*/
+	function dateFromISO8601(isoDateString) {
+	  var parts = isoDateString.match(/\d+/g);
+	  var x = new Date();
+	  var isoTime = Date.UTC(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]);
+
+	  return isoTime + ((x.getTimezoneOffset() * 60) * 1000);
+	}
+
+	/**
 	* Gets the difference between current and start times,
 	* calculating the time elapsed and building an object.
 	*
 	* @method getTimeDiff
 	* @param {Object} startTime Date time object (ISO, UNIX (seconds), JS Time (milliseconds))
-	* @param {Boolean} unix True/False allows use of UNIX timestamp
+	* @param {Object} settings
 	* @return {Object} Always returns object
 	*/
 	function getTimeDiff(startTime, settings) {
 		var s = 0;
 		var c = new Date();
 
-		if(settings.unix) {
+		if(settings.dateType === 'seconds') {
 			s = new Date(startTime*1000);
+		} else if(settings.dateType === 'milliseconds') {
+			s = new Date(startTime);
+		} else if(settings.dateType === 'ISO') {
+			s = new Date(dateFromISO8601(startTime));
 		} else {
 			s = new Date(startTime);
 		}
