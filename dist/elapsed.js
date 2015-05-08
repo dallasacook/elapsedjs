@@ -16,9 +16,6 @@
 
 (function($) {
 
- 	/**
- 	*/
-
 	$.Elapsed = function(options) {
 
 		init(options);

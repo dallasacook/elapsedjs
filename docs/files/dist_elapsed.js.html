@@ -82,24 +82,20 @@
 
 /**
  * Elapsed JS v 0.1
- *
- * A jQuery plugin that calculates the amount of time elapsed between
- * a given time, such as an event, and the current time which updates
- * in real time on any given selector or by the default &#x27;elapsed&#x27; class.
- *
- * @author Dallas Cook
- * @date 5/6/2015
- *
- * GNU GENERAL PUBLIC LICENSE
- *
+*
+* A jQuery plugin that calculates the amount of time elapsed between
+* a given time, such as an event, and the current time which updates
+* in real time on any given selector or by the default &#x27;elapsed&#x27; class.
+*
+* @class Elapsed
+* @author Dallas Cook
+* @date 5/6/2015
+*
+* GNU GENERAL PUBLIC LICENSE
+*
 */
 
 (function($) {
-
- 	/**
- 	* @class Elapsed
- 	* @constructor init
- 	*/
 
 	$.Elapsed = function(options) {
 
@@ -173,14 +169,14 @@
 		 */
 		startTime: 0,
 		/**
-		 * Used to properly convert a UNIX timestamp using Javascript Date such
-		 * as if passing UNIX timestamp from PHP as startTime property.
+		 * dateType designates the type of date parameter that can be
+		 * accepted by Elapsed. Defaults to ISO 8601. Also accepts &#x27;seconds&#x27; and &#x27;milliseconds&#x27;.
 		 *
-		 * @property unix
-		 * @type Integer
-		 * @default false
+		 * @property dateType
+		 * @type string
+		 * @default &#x27;ISO&#x27;
 		 */
-		unix: false,
+		dateType: &#x27;ISO&#x27;,
 		/**
 		 * The default selector property. Can be an HTML tag, class or ID. Basically
 		 * anything accepted by jQuery&#x27;s Selector.
@@ -294,7 +290,7 @@
 		}
 
 		//Calculate the difference in start and end time
-		var diff = getTimeDiff(startTime, settings.unix, settings.shorthand);
+		var diff = getTimeDiff(startTime, settings);
 
 		//If number setting is true, convert integer number to its word representation
 		if(!(diff.minute &gt; 0) &amp;&amp; diff.second &lt;= 0) {
@@ -355,25 +351,40 @@
 	}
 
 	/**
-	* Accepts a UNIX timestamp or ISO formatted date as
-	* well as any other date accepted by the native JavaScript
-	* Date object. The &#x27;unix&#x27; attribute must be set to true/false
-	* for a UNIX timestamp to be accepted.
+	* Converts an ISO 8601 formatted string into UTC milliseconds and then
+	* adds the local timezone offset.
 	*
+	* @method dateFromISO8601
+	* @param {String} ISO 8601 date string
+	* @return {Integer} Returns milliseconds
+	*/
+	function dateFromISO8601(isoDateString) {
+	  var parts = isoDateString.match(/\d+/g);
+	  var x = new Date();
+	  var isoTime = Date.UTC(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]);
+
+	  return isoTime + ((x.getTimezoneOffset() * 60) * 1000);
+	}
+
+	/**
 	* Gets the difference between current and start times,
 	* calculating the time elapsed and building an object.
 	*
 	* @method getTimeDiff
 	* @param {Object} startTime Date time object (ISO, UNIX (seconds), JS Time (milliseconds))
-	* @param {Boolean} unix True/False allows use of UNIX timestamp
+	* @param {Object} settings
 	* @return {Object} Always returns object
 	*/
-	function getTimeDiff(startTime, unix, shortHand, shortHandValues) {
+	function getTimeDiff(startTime, settings) {
 		var s = 0;
 		var c = new Date();
 
-		if(unix) {
+		if(settings.dateType === &#x27;seconds&#x27;) {
 			s = new Date(startTime*1000);
+		} else if(settings.dateType === &#x27;milliseconds&#x27;) {
+			s = new Date(startTime);
+		} else if(settings.dateType === &#x27;ISO&#x27;) {
+			s = new Date(dateFromISO8601(startTime));
 		} else {
 			s = new Date(startTime);
 		}
@@ -382,10 +393,10 @@
 		var d = (c.getTime() - s.getTime()) / 1000;
 
 		//Set shorthand abbreviation for time keys
-		if(shortHand) {
-			h = shortHandValues[&#x27;hour&#x27;];
-			m = shortHandValues[&#x27;minute&#x27;];
-			s = shortHandValues[&#x27;second&#x27;];
+		if(settings.shortHand) {
+			h = settings.shortHandValues.hour;
+			m = settings.shortHandValues.minute;
+			s = settings.shortHandValues.second;
 		} else {
 			h = &#x27;hour&#x27;;
 			m = &#x27;minute&#x27;;
@@ -491,8 +502,8 @@
 		if(settings.shortHand) {
 			m = settings.shortHandValues[&#x27;minute&#x27;];
 			s = settings.shortHandValues[&#x27;second&#x27;];
-			diffMinute = m;
-			diffSecond = s;
+			diffMinute = diff[m];
+			diffSecond = diff[s];
 		} else {
 			diffMinute = diff.minute;
 			diffSecond = diff.second;
@@ -507,9 +518,11 @@
 			interval.run = true;
 		}
 
-		if(settings.delay === true &amp;&amp; diffMinute  &lt; settings.stopIntervalMinutes) {
+		if(settings.delay === true &amp;&amp; diffMinute &lt; settings.stopIntervalMinutes) {
 			//Shorten interval for minutes &amp; seconds while respecting initial load time
-			if(diffMinute &gt;= 10) {
+			if(diffMinute &gt;= 30) {
+				interval.time  =  1800000;
+			} else if(diffMinute &gt;= 10) {
 				//Update every 10 minutes
 				interval.time  =  (diffMinute &gt; 10) ? (1800000 - (diffMinute * 60000)) : 600000;
 			} else if(diffMinute &gt;= 5) {
@@ -530,7 +543,6 @@
 			}
 
 		}
-
 		return interval;
 	}
 
