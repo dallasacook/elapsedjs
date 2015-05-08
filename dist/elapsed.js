@@ -385,6 +385,7 @@
 		if(interval.run) {
 			setTimeout(function() {
 				renderElement($el, settings);
+				console.log('I ran');
 			}, interval.time);
 		}
 	}
@@ -425,9 +426,11 @@
 			interval.run = true;
 		}
 
-		if(settings.delay === true && diffMinute  < settings.stopIntervalMinutes) {
+		if(settings.delay === true && diffMinute < settings.stopIntervalMinutes) {
 			//Shorten interval for minutes & seconds while respecting initial load time
-			if(diffMinute >= 10) {
+			if(diffMinute >= 30) {
+				interval.time  =  1800000;
+			} else if(diffMinute >= 10) {
 				//Update every 10 minutes
 				interval.time  =  (diffMinute > 10) ? (1800000 - (diffMinute * 60000)) : 600000;
 			} else if(diffMinute >= 5) {
@@ -448,7 +451,6 @@
 			}
 
 		}
-
 		return interval;
 	}
 
