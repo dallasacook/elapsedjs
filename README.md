@@ -64,7 +64,6 @@ HTML:
 JavaScript:
 ```
 $.Elapsed({
-	startTime: 1431013280,
 	unix: true,
 	number: 'string',
 	delay: true,
@@ -90,19 +89,19 @@ The phrase that is built and inserted into the DOM elements can be modified by f
 
 **futurePhrase** - Word or phrase displayed if current time is less than the provided start time. 
   
-  default: 'has not yet occurred'
+  	default: 'has not yet occurred'
 
 **initPhrase** - Word or phrase displayed when current time equals provided start time.
   
-  default: 'just occurred'
+  	default: 'just occurred'
 
 **appendPhrase** - Word or phrase added to the end of the final string.
   
-  default: 'ago'
+  	default: 'ago'
   
 **prependPhrase** - Word or phrase added to the beginning of the final string.
   
-  default: ''
+  	default: ''
   
 
 # Docs
