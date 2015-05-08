@@ -385,7 +385,6 @@
 		if(interval.run) {
 			setTimeout(function() {
 				renderElement($el, settings);
-				console.log('I ran');
 			}, interval.time);
 		}
 	}
