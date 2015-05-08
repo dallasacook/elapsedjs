@@ -409,8 +409,8 @@
 		if(settings.shortHand) {
 			m = settings.shortHandValues['minute'];
 			s = settings.shortHandValues['second'];
-			diffMinute = m;
-			diffSecond = s;
+			diffMinute = diff[m];
+			diffSecond = diff[s];
 		} else {
 			diffMinute = diff.minute;
 			diffSecond = diff.second;
