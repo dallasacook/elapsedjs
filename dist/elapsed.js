@@ -216,9 +216,9 @@
 
 		//If number setting is true, convert integer number to its word representation
 		if(!(diff.minute > 0) && diff.second <= 0) {
-			str = diff.second < 0 ? settings.futurePhrase : settings.initPhrase;
+			var str = diff.second < 0 ? settings.futurePhrase : settings.initPhrase;
 		} else {
-			str = renderElapsedPhrase(diff, settings);
+			var str = renderElapsedPhrase(diff, settings);
 		}
 
 		return { 'str' : str, 'diff' : diff };
@@ -301,13 +301,13 @@
 
 		//Set shorthand abbreviation for time keys
 		if(settings.shortHand) {
-			h = settings.shortHandValues.hour;
-			m = settings.shortHandValues.minute;
-			s = settings.shortHandValues.second;
+			var h = settings.shortHandValues.hour;
+			var m = settings.shortHandValues.minute;
+			var s = settings.shortHandValues.second;
 		} else {
-			h = 'hour';
-			m = 'minute';
-			s = 'second';
+			var h = 'hour';
+			var m = 'minute';
+			var s = 'second';
 		}
 
 		var diff = {
@@ -407,13 +407,13 @@
 	function getRunInterval(diff, settings) {
 
 		if(settings.shortHand) {
-			m = settings.shortHandValues['minute'];
-			s = settings.shortHandValues['second'];
-			diffMinute = diff[m];
-			diffSecond = diff[s];
+			var m = settings.shortHandValues['minute'];
+			var s = settings.shortHandValues['second'];
+			var diffMinute = diff[m];
+			var diffSecond = diff[s];
 		} else {
-			diffMinute = diff.minute;
-			diffSecond = diff.second;
+			var diffMinute = diff.minute;
+			var diffSecond = diff.second;
 		}
 
 		var interval = { 'run' : false, 'time' : settings.interval };
