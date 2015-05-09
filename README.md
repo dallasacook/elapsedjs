@@ -64,7 +64,7 @@ HTML:
 JavaScript:
 ```
 $.Elapsed({
-	unix: true,
+	dateType: 'seconds',
 	number: 'string',
 	delay: true,
 	exact: false
@@ -76,6 +76,12 @@ Would produce something similar to "two seconds ago" or "a few minutes ago".
 
 
 ## Properties
+
+**dateType**
+
+The dateType property designates the type of date parameter that can be passed to the Elapsed object. Defaults to ISO 8601 format. Also accepts 'seconds' (UNIX timestamp) and 'milliseconds' (JS Date.getTime()).
+
+	default: 'ISO'
 
 **startTime**
 

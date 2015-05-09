@@ -17,7 +17,7 @@
                 <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: Elapsed JS </em>
+            <em>API Docs for: </em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -31,16 +31,16 @@
                             <li><a href="#api-classes">Classes</a></li>
                             <li><a href="#api-modules">Modules</a></li>
                         </ul>
-
+                
                         <div id="api-tabview-filter">
                             <input type="search" id="api-filter" placeholder="Type to filter APIs">
                         </div>
-
+                
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/Elapsed.html">Elapsed</a></li>
                             </ul>
-
+                
                             <ul id="api-modules" class="apis modules">
                             </ul>
                         </div>
@@ -55,12 +55,12 @@
                         <input type="checkbox" id="api-show-inherited" checked>
                         Inherited
                     </label>
-
+            
                     <label for="api-show-protected">
                         <input type="checkbox" id="api-show-protected">
                         Protected
                     </label>
-
+            
                     <label for="api-show-private">
                         <input type="checkbox" id="api-show-private">
                         Private
@@ -69,9 +69,9 @@
                         <input type="checkbox" id="api-show-deprecated">
                         Deprecated
                     </label>
-
+            
                 </div>
-
+            
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
@@ -80,7 +80,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/dist_elapsed.js.html#l18"><code>dist&#x2F;elapsed.js:18</code></a>
+            Defined in: <a href="../files/dist_elapsed.js.html#l2"><code>dist&#x2F;elapsed.js:2</code></a>
         </div>
 
 
@@ -88,42 +88,13 @@
 
 
 <div class="box intro">
+    <p>Elapsed JS v 0.1</p>
+<p>A jQuery plugin that calculates the amount of time elapsed between
+a given time, such as an event, and the current time which updates
+in real time on any given selector or by the default 'elapsed' class.</p>
 
 </div>
 
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_Elapsed" class="method item">
-    <h3 class="name"><code>Elapsed</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/dist_elapsed.js.html#l18"><code>dist&#x2F;elapsed.js:18</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-
-    </div>
-
-
-
-
-</div>
-    </div>
 
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
@@ -141,6 +112,10 @@
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_dateFromISO8601">dateFromISO8601</a>
+
+                            </li>
                             <li class="index-item method">
                                 <a href="#method_getElapsedTimePhrase">getElapsedTimePhrase</a>
 
@@ -178,6 +153,10 @@
                     <ul class="index-list properties">
                             <li class="index-item property">
                                 <a href="#property_appendPhrase">appendPhrase</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_dateType">dateType</a>
 
                             </li>
                             <li class="index-item property">
@@ -236,10 +215,6 @@
                                 <a href="#property_stopIntervalMinutes">stopIntervalMinutes</a>
 
                             </li>
-                            <li class="index-item property">
-                                <a href="#property_unix">unix</a>
-
-                            </li>
                     </ul>
                 </div>
 
@@ -249,6 +224,73 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
+<div id="method_dateFromISO8601" class="method item">
+    <h3 class="name"><code>dateFromISO8601</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ISO</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/dist_elapsed.js.html#l272"><code>dist&#x2F;elapsed.js:272</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Converts an ISO 8601 formatted string into UTC milliseconds and then
+adds the local timezone offset.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ISO</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>8601 date string</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+                    <p>Returns milliseconds</p>
+
+            </div>
+        </div>
+
+
+</div>
 <div id="method_getElapsedTimePhrase" class="method item">
     <h3 class="name"><code>getElapsedTimePhrase</code></h3>
 
@@ -267,7 +309,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l198"><code>dist&#x2F;elapsed.js:198</code></a>
+        <a href="../files/dist_elapsed.js.html#l194"><code>dist&#x2F;elapsed.js:194</code></a>
         </p>
 
 
@@ -317,7 +359,7 @@ rendering. Returns a string and time difference object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l393"><code>dist&#x2F;elapsed.js:393</code></a>
+        <a href="../files/dist_elapsed.js.html#l404"><code>dist&#x2F;elapsed.js:404</code></a>
         </p>
 
 
@@ -374,7 +416,7 @@ an accurate interval in milliseconds.</p>
                         <code>startTime</code>
                 </li>
                 <li class="arg">
-                        <code>unix</code>
+                        <code>settings</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -392,7 +434,7 @@ an accurate interval in milliseconds.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l276"><code>dist&#x2F;elapsed.js:276</code></a>
+        <a href="../files/dist_elapsed.js.html#l288"><code>dist&#x2F;elapsed.js:288</code></a>
         </p>
 
 
@@ -400,11 +442,7 @@ an accurate interval in milliseconds.</p>
     </div>
 
     <div class="description">
-        <p>Accepts a UNIX timestamp or ISO formatted date as
-well as any other date accepted by the native JavaScript
-Date object. The 'unix' attribute must be set to true/false
-for a UNIX timestamp to be accepted.</p>
-<p>Gets the difference between current and start times,
+        <p>Gets the difference between current and start times,
 calculating the time elapsed and building an object.</p>
 
     </div>
@@ -425,13 +463,12 @@ calculating the time elapsed and building an object.</p>
 
                 </li>
                 <li class="param">
-                        <code class="param-name">unix</code>
-                        <span class="type">Boolean</span>
+                        <code class="param-name">settings</code>
+                        <span class="type">Object</span>
 
 
                     <div class="param-description">
-                        <p>True/False allows use of UNIX timestamp</p>
-
+                         
                     </div>
 
                 </li>
@@ -468,7 +505,7 @@ calculating the time elapsed and building an object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l162"><code>dist&#x2F;elapsed.js:162</code></a>
+        <a href="../files/dist_elapsed.js.html#l158"><code>dist&#x2F;elapsed.js:158</code></a>
         </p>
 
 
@@ -510,7 +547,7 @@ calculating the time elapsed and building an object.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l228"><code>dist&#x2F;elapsed.js:228</code></a>
+        <a href="../files/dist_elapsed.js.html#l224"><code>dist&#x2F;elapsed.js:224</code></a>
         </p>
 
 
@@ -560,7 +597,7 @@ hours, minutes, and seconds. This is used to build the string.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l366"><code>dist&#x2F;elapsed.js:366</code></a>
+        <a href="../files/dist_elapsed.js.html#l377"><code>dist&#x2F;elapsed.js:377</code></a>
         </p>
 
 
@@ -628,7 +665,7 @@ until its interval.run property returns false.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/dist_elapsed.js.html#l328"><code>dist&#x2F;elapsed.js:328</code></a>
+        <a href="../files/dist_elapsed.js.html#l339"><code>dist&#x2F;elapsed.js:339</code></a>
         </p>
 
 
@@ -653,7 +690,7 @@ interval.run property returns false, then the recursion ends.</p>
 
 
                     <div class="param-description">
-
+                         
                     </div>
 
                 </li>
@@ -679,428 +716,428 @@ interval.run property returns false, then the recursion ends.</p>
                     <div id="property_appendPhrase" class="property item">
                         <h3 class="name"><code>appendPhrase</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l54"><code>dist&#x2F;elapsed.js:54</code></a>
+                            <a href="../files/dist_elapsed.js.html#l50"><code>dist&#x2F;elapsed.js:50</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Word or phrase added to the end of the final string</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;ago&#x27;</p>
-
-
+                    
+                    
+                    </div>
+                    <div id="property_dateType" class="property item">
+                        <h3 class="name"><code>dateType</code></h3>
+                        <span class="type">String</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/dist_elapsed.js.html#l90"><code>dist&#x2F;elapsed.js:90</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>dateType designates the type of date parameter that can be
+                    accepted by Elapsed. Defaults to ISO 8601. Also accepts 'seconds' and 'milliseconds'.</p>
+                    
+                        </div>
+                    
+                            <p><strong>Default:</strong> &#x27;ISO&#x27;</p>
+                    
+                    
                     </div>
                     <div id="property_defaults" class="property item">
                         <h3 class="name"><code>defaults</code></h3>
                         <span class="type">Object</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l30"><code>dist&#x2F;elapsed.js:30</code></a>
+                            <a href="../files/dist_elapsed.js.html#l26"><code>dist&#x2F;elapsed.js:26</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>The elapsed defaults object contains a set of overridable parameters,
                     which gives developers full control over the plugin.</p>
-
+                    
                         </div>
-
-
-
+                    
+                    
+                    
                     </div>
                     <div id="property_delay" class="property item">
                         <h3 class="name"><code>delay</code></h3>
                         <span class="type">Boolean</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l141"><code>dist&#x2F;elapsed.js:141</code></a>
+                            <a href="../files/dist_elapsed.js.html#l137"><code>dist&#x2F;elapsed.js:137</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>If true, the interval is delayed after 5 &amp; 10 seconds and after 1, 5 &amp; 10 minutes.
                     If false, active intervals will run at 'interval' time</p>
                     <p>Settings to false can greatly increase the call stack.</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> true</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_exact" class="property item">
                         <h3 class="name"><code>exact</code></h3>
                         <span class="type">Boolean</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l123"><code>dist&#x2F;elapsed.js:123</code></a>
+                            <a href="../files/dist_elapsed.js.html#l119"><code>dist&#x2F;elapsed.js:119</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>If true, the exact property displays each number in the interval without
                     abbreviations such as &quot;a few minutes ago&quot;.</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> true</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_futurePhrase" class="property item">
                         <h3 class="name"><code>futurePhrase</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l38"><code>dist&#x2F;elapsed.js:38</code></a>
+                            <a href="../files/dist_elapsed.js.html#l34"><code>dist&#x2F;elapsed.js:34</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Displays if current time is less than the provided start time</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;has not yet occurred&#x27;</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_initPhrase" class="property item">
                         <h3 class="name"><code>initPhrase</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l46"><code>dist&#x2F;elapsed.js:46</code></a>
+                            <a href="../files/dist_elapsed.js.html#l42"><code>dist&#x2F;elapsed.js:42</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Word or phrase displayed when current time equals provided start time</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;just occurred&#x27;</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_interval" class="property item">
                         <h3 class="name"><code>interval</code></h3>
                         <span class="type">Integer</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l132"><code>dist&#x2F;elapsed.js:132</code></a>
+                            <a href="../files/dist_elapsed.js.html#l128"><code>dist&#x2F;elapsed.js:128</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>The default interval at which to update the DOM element with the
                     new elapsed time phrase.</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> 1000</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_number" class="property item">
                         <h3 class="name"><code>number</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l112"><code>dist&#x2F;elapsed.js:112</code></a>
+                            <a href="../files/dist_elapsed.js.html#l108"><code>dist&#x2F;elapsed.js:108</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Determintes whether or not to display the number in the phrase as a
                     string or an integer. Specified by 'string' and 'integer'.</p>
                     <p>Ex. One vs. 1</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;string&#x27;</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_numStr" class="property item">
                         <h3 class="name"><code>numStr</code></h3>
                         <span class="type">Object</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l174"><code>dist&#x2F;elapsed.js:174</code></a>
+                            <a href="../files/dist_elapsed.js.html#l170"><code>dist&#x2F;elapsed.js:170</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>An object made up three arrays. It includes array of word equivalents of single
                     digit numbers, double digit teens and all those divisible by 10.</p>
                     <p>Used to convert integers to strings. Up to 'ninety-nine', which serves the purpose
                     of this plugin since days beyond 'thirty-one' are not displayed.</p>
-
+                    
                         </div>
-
-
-
+                    
+                    
+                    
                     </div>
                     <div id="property_prependPhrase" class="property item">
                         <h3 class="name"><code>prependPhrase</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l62"><code>dist&#x2F;elapsed.js:62</code></a>
+                            <a href="../files/dist_elapsed.js.html#l58"><code>dist&#x2F;elapsed.js:58</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Word or phrase added to the beginning of the final string</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;&#x27;</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_selector" class="property item">
                         <h3 class="name"><code>selector</code></h3>
                         <span class="type">String</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l103"><code>dist&#x2F;elapsed.js:103</code></a>
+                            <a href="../files/dist_elapsed.js.html#l99"><code>dist&#x2F;elapsed.js:99</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>The default selector property. Can be an HTML tag, class or ID. Basically
                     anything accepted by jQuery's Selector.</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> &#x27;.elapsed&#x27;</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_shortHand" class="property item">
                         <h3 class="name"><code>shortHand</code></h3>
                         <span class="type">Boolean</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l70"><code>dist&#x2F;elapsed.js:70</code></a>
+                            <a href="../files/dist_elapsed.js.html#l66"><code>dist&#x2F;elapsed.js:66</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Turns on shorthand for hours, minutes, &amp; seconds</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> false</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_shortHandValues" class="property item">
                         <h3 class="name"><code>shortHandValues</code></h3>
                         <span class="type">Object</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l78"><code>dist&#x2F;elapsed.js:78</code></a>
+                            <a href="../files/dist_elapsed.js.html#l74"><code>dist&#x2F;elapsed.js:74</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Overridable shorthand values for hours, minutes, &amp; seconds</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> {&#x27;hour&#x27; : &#x27;hr&#x27;, &#x27;minute&#x27; : &#x27;min&#x27;, &#x27;second&#x27; : &#x27;sec&#x27; }</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_startTime" class="property item">
                         <h3 class="name"><code>startTime</code></h3>
                         <span class="type">Integer</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l86"><code>dist&#x2F;elapsed.js:86</code></a>
+                            <a href="../files/dist_elapsed.js.html#l82"><code>dist&#x2F;elapsed.js:82</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>Start time property</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> 0</p>
-
-
+                    
+                    
                     </div>
                     <div id="property_stopIntervalMinutes" class="property item">
                         <h3 class="name"><code>stopIntervalMinutes</code></h3>
                         <span class="type">Integer</span>
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/dist_elapsed.js.html#l152"><code>dist&#x2F;elapsed.js:152</code></a>
+                            <a href="../files/dist_elapsed.js.html#l148"><code>dist&#x2F;elapsed.js:148</code></a>
                             </p>
-
-
+                    
+                    
                         </div>
-
+                    
                         <div class="description">
                             <p>The number of minutes at which to stop the interval.</p>
-
+                    
                         </div>
-
+                    
                             <p><strong>Default:</strong> 30</p>
-
-
-                    </div>
-                    <div id="property_unix" class="property item">
-                        <h3 class="name"><code>unix</code></h3>
-                        <span class="type">Integer</span>
-
-
-
-
-
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/dist_elapsed.js.html#l94"><code>dist&#x2F;elapsed.js:94</code></a>
-                            </p>
-
-
-                        </div>
-
-                        <div class="description">
-                            <p>Used to properly convert a UNIX timestamp using Javascript Date such
-                    as if passing UNIX timestamp from PHP as startTime property.</p>
-
-                        </div>
-
-                            <p><strong>Default:</strong> false</p>
-
-
+                    
+                    
                     </div>
             </div>
 
