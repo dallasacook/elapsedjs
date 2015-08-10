@@ -1,4 +1,7 @@
 # Elapsed JS
+
+![alt tag](https://img.shields.io/travis/joyent/node/v0.6.svg)
+
 Elapsed JS provides an easy way to format a human readable version of an elapsed period of time, which would be suited for use in a notification or chat system. Elapsed JS provides a number of options such as: 
 
 * Complete control of the phrase text with included defaults.
