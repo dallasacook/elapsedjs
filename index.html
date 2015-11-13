@@ -12,52 +12,71 @@
 	<h4>You received this notification <span class="elapsed"></span></h4>
 
 	<h2>Unix Timestamp, using 'data-elapsed-time' attribute.</h2>
-	<h4>You received this notification <span class="elapsed" data-elapsed-time="1431013484"></span></h4>
-
-	<h2>Unix Timestamp, using 'data-elapsed-time' attribute.</h2>
-	<h4>You received this notification <span class="elapsed" data-elapsed-time="1431013280"></span></h4>
+	<h4>You received this notification <span class="elapsed" data-elapsed-time="1433016750"></span></h4>
 
 	<h2>ISO Date, passed into Elapsed as property & not using default selector</h2>
 	<h4>You received this notification <span id="elapsed"></span></h4>
 
+	<h2>ISO Date, 'clock'.</h2>
 	<h4>You received this notification <span id="elapsed_2"></span></h4>
+
+	<h2>ISO Date, 'clock'.</h2>
+	<h4>You received this notification <span id="elapsed_3"></span></h4>
 
 	<script>
 
 	$(document).ready(function(){
 
-		//Multiple Instances, Default Selector
+		// Example #1
+		// Multiple instances of elapsed time using default selector (.elapsed)
+		// Second elapsed element overrides initTime with data-elapsed-time
 		$.Elapsed({
-			startTime: 1439085794, //Insert a new UNIX timestamp here
-			unix: true,
-			number: 'integer',
-			delay: true,
-			exact: true,
-			shortHand: true,
-			stopIntervalMinutes: 120
+			initTime: 1439085794, // Insert a new UNIX timestamp here
+			dateType: 'seconds', // Specifies a UNIX timestamp (seconds) is being passed
+			number: 'integer', // Specifies display of the number (3 vs. three : integer vs. string)
+			delay: true, // Delay the update interval of the elapsed string. See API reference
+			exact: false, // Displays exact time elapsed as opposed to abbreviations such as "a few minutes ago"
+			stopIntervalMinutes: 120, // Stop interval after a provided number of minutes, ex. 120,
+			inlineDate: true
 		});
 
-		//Overridden selector, ISO date
+		// Example #2
+		// Overridden selector, ISO formatted date
 		$.Elapsed({
-			startTime: '2015-05-07T00:08:38-05:00', //Insert a new ISO date here
-			selector: '#elapsed',
-			number: 'integer',
-			delay: true,
-			exact: false,
-			shortHand: false
+			initTime: '2015-05-07T00:08:38+00:00', // Insert a ISO formatted date here
+			selector: '#elapsed', // Custom selector to apply elapsed time to, any jQuery selector
+			number: 'integer', // Specifies display of the number (3 vs. three, integer vs. string)
+			delay: false, // Delay the update interval of the elapsed string. See API reference
+			clock: true,
+			seperator: ' -' // Value to seperate time units
 		});
 
-		//Overridden selector, UNIX date
+		// Example #3
+		// Clock feature shows a full representation of the elapsed time
+		// by displaying each unit's value.
 		$.Elapsed({
-			startTime: 1431016750, //Insert a new UNIX date here
-			unix: true,
-			selector: '#elapsed_2',
-			number: 'string',
-			delay: true,
-			exact: true,
-			shortHand: false
+			initTime: '1988-08-24T23:01:21+00:00', // Provide a timestamp
+			selector: '#elapsed_2', // Custom selector to apply elapsed time to, any jQuery selector
+			number: 'number', // Specifies display of the number (3 vs. three, integer vs. string)
+			delay: false, // Delay the update interval of the elapsed string. See API reference
+			exact: true, // Displays exact time elapsed as opposed to abbreviations such as "a few minutes ago"
+			shortHand: true, // Do not show shorthand values such as hr, min & sec.
+			clock: true, // Shows a string that includes each time unit value
+			seperator: ',' // Value to seperate time units
 		});
 
+		// Example #4
+		//
+		$.Elapsed({
+			initTime: 1439331658, // Provide a timestamp
+			dateType: 'seconds',
+			selector: '#elapsed_3', // Custom selector to apply elapsed time to, any jQuery selector
+			number: 'string', // Specifies display of the number (3 vs. three, integer vs. string)
+			delay: true, // Delay the update interval of the elapsed string. See API reference
+			exact: true, // Displays exact time elapsed as opposed to abbreviations such as "a few minutes ago"
+			shortHand: true, // Do not show shorthand values such as hr, min & sec.
+			clock: true // Shows a string that includes each time unit value
+		});
 	});
 	</script>
 

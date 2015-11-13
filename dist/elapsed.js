@@ -80,19 +80,19 @@
 		 */
 		shortHandValues: {'hour' : 'hr', 'minute' : 'min', 'second' : 'sec' },
 		/**
-		 * Start time property
+		 * Initial time property. The time value
 		 *
-		 * @property startTime
+		 * @property initTime
 		 * @type Integer
 		 * @default 0
 		 */
-		startTime: 0,
+		initTime: null,
 		/**
 		 * dateType designates the type of date parameter that can be
 		 * accepted by Elapsed. Defaults to ISO 8601. Also accepts 'seconds' and 'milliseconds'.
 		 *
 		 * @property dateType
-		 * @type string
+		 * @type String
 		 * @default 'ISO'
 		 */
 		dateType: 'ISO',
@@ -101,18 +101,18 @@
 		 * anything accepted by jQuery's Selector.
 		 *
 		 * @property selector
-		 * @type string
+		 * @type String
 		 * @default '.elapsed'
 		 */
 		selector: '.elapsed',
 		/**
 		 * Determintes whether or not to display the number in the phrase as a
-		 * string or an integer. Specified by 'string' and 'integer'.
+		 * string or an Integer. Specified by 'string' and 'integer'.
 		 *
 		 * Ex. One vs. 1
 		 *
 		 * @property number
-		 * @type string
+		 * @type String
 		 * @default 'string'
 		 */
 		number: 'string',
@@ -130,7 +130,7 @@
 		 * new elapsed time phrase.
 		 *
 		 * @property interval
-		 * @type integer
+		 * @type Integer
 		 * @default 1000
 		 */
 		interval: 1000,
@@ -149,17 +149,99 @@
 		 * The number of minutes at which to stop the interval.
 		 *
 		 * @property stopIntervalMinutes
-		 * @type integer
+		 * @type Integer
 		 * @default 30
 		 */
-		stopIntervalMinutes: 30
+		stopIntervalMinutes: 30,
+		/**
+		 * The clock option can display each time value of the
+		 * the elapsed time difference as a single string.
+		 *
+		 * Warning: Not to be used in conjunction with the delay plugin.
+		 *
+		 * @property clock
+		 * @type Boolean
+		 * @default 30
+		 */
+		clock: false,
+		/**
+		 * clockOptions includes each unit, whether or not it should be displayed
+		 * and the number of the next (lower) unit it takes to equal it.
+		 *
+		 * @property clockOptions
+		 * @type Object
+		 * @default mixed
+		 */
+		clockOptions: {
+			century: {
+				display: true,
+				lower: 10 // Millennium
+			},
+			decade: {
+				display: true,
+				lower: 10 // Century
+			},
+			year: {
+				display: true,
+				lower: 10 // Decade
+			},
+			month: {
+				display: true,
+				lower: 12 // Year
+			},
+			week: {
+				display: true,
+				lower: 4 // Month
+			},
+			day: {
+				display: true,
+				lower: 7 // Week
+			},
+			hour: {
+				display: true,
+				lower: 24 // Day
+			},
+			minute: {
+				display: true,
+				lower: 60 // Hours
+			},
+			second: {
+				display: true,
+				lower: 60 // Minutes
+			}
+		},
+		/**
+		 * Seperates each unit of time if provided.
+		 *
+		 * @property seperator
+		 * @type String
+		 * @default String
+		 */
+		 seperator: '',
+ 		/**
+ 		 * Time cache
+ 		 *
+ 		 * @property timeCache
+ 		 * @type Integer
+ 		 * @default null
+ 		 */
+		 timeCache: null,
+ 		/**
+ 		 * Cache used when overriding with data-elapsed-time attribute
+ 		 *
+ 		 * @property timeCache
+ 		 * @type Integer
+ 		 * @default null
+ 		 */
+		 attrTimeCache: null,
+		 inlineDate: false
 	};
 
 	/**
 	* Begins rendering elements on object instantiation
 	*
 	* @method init
-	* @return void
+	* @return Void
 	*/
 	function init(options) {
 
@@ -168,8 +250,8 @@
 	}
 
 	/**
-	* An object made up three arrays. It includes array of word equivalents of single
-	* digit numbers, double digit teens and all those divisible by 10.
+	* An object composed of three arrays. It includes an array of word equivalents of single
+	* digit numbers, teen digits (10 - 19) and all those divisible by 10.
 	*
 	* Used to convert integers to strings. Up to 'ninety-nine', which serves the purpose
 	* of this plugin since days beyond 'thirty-one' are not displayed.
@@ -181,7 +263,7 @@
 		'single' :  [
 				'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'
 			],
-		'double' : [
+		'teens' : [
 				'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
 				'eighteen', 'nineteen'
 		],
@@ -198,27 +280,20 @@
 	* @method getElapsedTimePhrase
 	* @return {Object} Returns an object containing a string (phrase) and integer (time difference).
 	*/
-	function getElapsedTimePhrase(attrTime, settings) {
-		var startTime = 0;
+	function getElapsedTimePhrase(initTime, settings) {
+		var phrase = null;
+		var timeDiff = null;
 
-		//If start time element attribute exists, override settings on instantiation
-		if(attrTime !== undefined) {
-			startTime = attrTime;
+		// Calculate the difference in start and end time
+		timeDiff = getTimeDiff(initTime, settings);
+		// If number setting is true, convert integer number to its word representation
+		if(timeDiff <= 0) {
+			phrase = timeDiff < 0 ? settings.futurePhrase : settings.initPhrase;
 		} else {
-			startTime = settings.startTime;
+			phrase = renderElapsedPhrase(timeDiff, settings);
 		}
 
-		//Calculate the difference in start and end time
-		var diff = getTimeDiff(startTime, settings);
-
-		//If number setting is true, convert integer number to its word representation
-		if(!(diff.minute > 0) && diff.second <= 0) {
-			var str = diff.second < 0 ? settings.futurePhrase : settings.initPhrase;
-		} else {
-			var str = renderElapsedPhrase(diff, settings);
-		}
-
-		return { 'str' : str, 'diff' : diff };
+		return { 'str' : phrase, 'diff' : timeDiff };
 	}
 
 	/**
@@ -229,110 +304,235 @@
 	* @return {String} word Returns a phrase based on the time difference object
 	*/
 
-	function renderElapsedPhrase(n, settings){
+	function renderElapsedPhrase(diff, settings){
 
-		var word = '';
-		var str = '';
+		var phrase = '';
+		var str = null;
+		var unit = null;
+		var article = null;
+		var num = null;
+		var singleDigit = null;
 
-		for(var unit in n) {
-			if(n[unit]) {
-				var article = (unit===settings.shortHandValues.hour || unit==='hour') ? 'an' : 'a';
-				var num = n[unit];
-				if(settings.exact==false && num < 5) {
-				  str = (num === 1) ? article+' ' + unit : article+' few ' + unit + 's';
-				  word += str + ' ' + settings.appendPhrase;
+		// Loop through each unit of time to build phrase
+		for(var i = 0; i < diff.length; i++) {
+
+			// Get unit of time and value
+			unit = diff[i]['unit'];
+			num = diff[i]['value'];
+
+			// Hide all zero values except minutes and seconds
+			if(num === 0 && !(unit === 'second' || unit === 'sec')) {
+				continue;
+			}
+			if(!settings.exact && num < 5) {
+				// Get article for proper grammar
+				article = (unit === 'hour' || unit === 'hr') ? 'an' : 'a';
+			  	// Build this unit's portion of the phrase
+				if(num !== 0) {
+					str = (num === 1 && num !== null) ? article + ' ' + unit : article + ' few ' + unit + 's';
 				} else {
-					//If settings.number settings is true, convert integer to string equivalent
-					if(settings.number === 'string') {
-						if(num < 10) {
-							str = numStr.single[num];
-						} else if(num >= 10 && num < 20) {
-							str = numStr.double[num-10];
-						} else if(num >= 20 && num < 100) {
-							for(var i = 20; num >= i; i+=10) {
-								var singleDigit = (num-i > 0) ? '-' + numStr.single[num-i] : '';
-								str = numStr.tens[(String(num).charAt(0)-2)] + singleDigit;
-							}
-						}
-					} else {
-						//Add integer to string
-						str = num+'';
-					}
-					word += (num > 1) ? str+' '+unit+'s' : str+' '+unit;
-					word += ' ' + settings.appendPhrase;
+					str = num + ' ' + unit + 's';
 				}
-
+			  	phrase += ' ' + (i < (diff.length - 1)) ? str + settings.seperator + ' ' : str + ' ';
+			} else {
+				// If settings.number settings is true, convert integer to string equivalent
+				if(settings.number === 'string') {
+					if(num < 10) {
+						str = numStr.single[num];
+					} else if(num >= 10 && num < 20) {
+						str = numStr.teens[num - 10];
+					} else if(num >= 20 && num < 100) {
+						for(var x = 20; num >= x; x += 10) {
+							singleDigit = (num - x > 0) ? '-' + numStr.single[num - x] : '';
+							str = numStr.tens[(String(num).charAt(0) - 2)] + singleDigit;
+						}
+					}
+				} else {
+					// Add integer to string
+					str = num + '';
+				}
+			    // Build this unit's portion of the phrase
+				phrase += (num !== 1) ? ' ' + str + ' ' + unit + 's' : ' ' + str + ' ' + unit;
+				phrase += (i < (diff.length - 1)) ? settings.seperator + ' ' : ' ';
+			}
+			if(i === (diff.length - 1) || diff[i + 1]['value'] === null) {
+				phrase += settings.appendPhrase;
 				break;
 			}
 		}
-		return word;
-
+		return phrase;
 	}
 
 	/**
-	* Converts an ISO 8601 formatted string into UTC milliseconds and then
-	* adds the local timezone offset.
+	* Returns key by value.
 	*
-	* @method dateFromISO8601
-	* @param {String} ISO 8601 date string
-	* @return {Integer} Returns milliseconds
+	* @method getObjectKey
+	* @param {Object} {String}
+	* @return {String}
 	*/
-	function dateFromISO8601(isoDateString) {
-	  var parts = isoDateString.match(/\d+/g);
-	  var x = new Date();
-	  var isoTime = Date.UTC(parts[0], parts[1] - 1, parts[2], parts[3], parts[4]);
-
-	  return isoTime + ((x.getTimezoneOffset() * 60) * 1000);
+  function getObjectKey(obj, value) {
+	  for(var key in obj) {
+	    if(obj[key] === value){
+	      return key;
+	    }
+	  }
+	  return null;
 	}
 
 	/**
 	* Gets the difference between current and start times,
-	* calculating the time elapsed and building an object.
+	* by calculating the time elapsed and building an object
+	* containing each unit of time measurement: years, months, weeks, days, hours, minutes, seconds.
 	*
 	* @method getTimeDiff
-	* @param {Object} startTime Date time object (ISO, UNIX (seconds), JS Time (milliseconds))
+	* @param {Object} initTime Date time object (ISO, UNIX (seconds), JS Time (milliseconds))
 	* @param {Object} settings
 	* @return {Object} Always returns object
 	*/
-	function getTimeDiff(startTime, settings) {
-		var s = 0;
-		var c = new Date();
+	function getTimeDiff(initTime, settings) {
+		var start = null;
+		var current = new Date();
 
-		if(settings.dateType === 'seconds') {
-			s = new Date(startTime*1000);
-		} else if(settings.dateType === 'milliseconds') {
-			s = new Date(startTime);
-		} else if(settings.dateType === 'ISO') {
-			s = new Date(dateFromISO8601(startTime));
+		if(settings.timeCache === null) {
+			// Get date type time format in milliseconds
+			if(settings.dateType === 'seconds') {
+				start = new Date(initTime * 1000);
+			} else {
+				start = new Date(initTime);
+			}
+			// Set timeCache to reduce date calculation
+			settings.timeCache = start;
+		} else if(settings.inlineDate) {
+			// Get date type time format in milliseconds
+			if(settings.dateType === 'seconds') {
+				start = new Date(initTime * 1000);
+			} else {
+				start = new Date(initTime);
+			}
 		} else {
-			s = new Date(startTime);
+			// Get start value from cache
+			start = settings.timeCache;
 		}
-
-		//Get time difference in seconds
-		var d = (c.getTime() - s.getTime()) / 1000;
-
-		//Set shorthand abbreviation for time keys
+		// Get time difference in seconds
+		var timeDiff = (current.getTime() - start.getTime()) / 1000;
+		if(timeDiff < 0) {
+			return timeDiff;
+		}
+		// Set shorthand abbreviation for time keys
+		var timeKeys = null;
 		if(settings.shortHand) {
-			var h = settings.shortHandValues.hour;
-			var m = settings.shortHandValues.minute;
-			var s = settings.shortHandValues.second;
+			timeKeys = {
+				h : settings.shortHandValues.hour,
+				m : settings.shortHandValues.minute,
+				s : settings.shortHandValues.second
+			};
 		} else {
-			var h = 'hour';
-			var m = 'minute';
-			var s = 'second';
+			timeKeys = {
+				h : 'hour',
+				m : 'minute',
+				s : 'second'
+			};
 		}
 
-		var diff = {
-			'year' : Math.floor(d/31556926),
-			'month' : Math.floor(d/2629743),
-			'week' : Math.floor((Math.floor(d/86400)/7)),
-			'day' : Math.floor(d/86400)
-		};
-
-		diff[h] = Math.floor(d/3600);
-		diff[m] = Math.floor(d/60);
-		diff[s] = Math.floor(d);
-
+		// Build time difference object
+		var diff = [{
+				unit: 'century',
+				func: function(t) {
+					return Math.floor(t / 3153600000);
+				},
+				value: null
+			}, {
+				unit: 'decade',
+				func: function(t) {
+					return Math.floor(t / 315360000);
+				},
+				value: null
+			}, {
+				unit: 'year',
+				func: function(t) {
+					return Math.floor(t / 31557000);
+				},
+				value: null
+			}, {
+				unit: 'month',
+				func: function(t) {
+					return t / 2628000;
+					//return Math.floor(t / 2628000);
+				},
+				value: null
+			}, {
+				unit: 'week',
+				func: function(t) {
+					return Math.floor((Math.floor(t / 86400) / 7));
+				},
+				value: null
+			}, {
+				unit: 'day',
+				func: function(t) {
+					return Math.floor(t / 86400);
+				},
+				value: null
+			}, {
+				unit: timeKeys.h,
+				func: function(t) {
+					return Math.floor(t / 3600);
+				},
+				value: null
+			}, {
+				unit: timeKeys.m,
+				func: function(t) {
+					return Math.floor(t / 60);
+				},
+				value: null
+			}, {
+				unit: timeKeys.s,
+				func: function(t) {
+					return Math.floor(t);
+				},
+				value: null
+		}];
+		// Calculate each unit of time
+		for(var i = 0; i < diff.length; i++) {
+			diff[i]['value'] = diff[i]['func'](timeDiff);
+			if(!settings.clock && diff[i]['value'] > 0) {
+				break;
+			}
+		}
+		// Clock displays an exact elapsed time value with each unit specified as
+		// true in clockOptions
+		if(settings.clock) {
+			// Set correct values based on upper unit value
+			var count = null;
+			var upper = null;
+			var tmp = null;
+			var unit = null;
+			for(var i = 0; i < diff.length; i++) {
+				if(diff[i]['value'] > 0) {
+					// If shortHand values are used, convert string for loop - only get short values for hours, minutes, seconds
+					unit = (settings.shortHand && i > 5) ? getObjectKey(settings.shortHandValues, diff[i]['unit']) : diff[i]['unit'];
+					// Copy upper unit value before overwriting
+					tmp = upper;
+					// Assign new upper unit value before overwriting upperUnit
+					upper = diff[i]['value']
+					// If true, we've reached the upper unit value or the unit values that
+					// must be modified by each of their upper (parent) unit value.
+					if(count > 0) {
+						if(settings.clockOptions[unit]['display'] && unit !== 'second' && unit !== 'year' && unit !== 'month' && unit !== 'week') {
+							diff[i]['value'] = diff[i]['value'] - (tmp * settings.clockOptions[unit]['lower']);
+						} else if(unit === 'year') {
+							diff[i]['value'] = diff[i]['value'] % 10;
+						} else if(unit === 'month') {
+							diff[i]['value'] = diff[i]['value'] % 12;
+						}  else if(unit === 'week') {
+							diff[i]['value'] = diff[i]['value'] % 4;
+						} else if(unit === 'second') {
+							diff[i]['value'] = diff[i]['value'] % 60;
+						}
+					}
+					count++;
+				}
+			}
+		}
 		return diff;
 	}
 
@@ -351,25 +551,33 @@
 	function renderElements(options) {
 
 		var selector = (options.selector !== undefined) ? options.selector : $.Elapsed.defaults.selector;
-
+		var $this = null;
+		var attrTime = null;
+		var initTime = null;
+		var elapsedPhrase = null;
+		var interval = null;
+		var settings = $.extend({}, $.Elapsed.defaults, options);
 		$(document).find(selector).each(function(index) {
 
-			var $this = $(this);
-			var settings = $.extend({}, $.Elapsed.defaults, options);
-
-			var attrTime = $this.attr('data-elapsed-time');
-			var elapsed = getElapsedTimePhrase(attrTime, settings);
+			$this = $(this);
+			if(settings.inlineDate) {
+				attrTime = $this.attr('data-elapsed-time');
+				if(attrTime !== undefined) {
+					initTime = attrTime;
+				} else {
+					initTime = settings.initTime;
+				}
+			} else {
+				initTime = settings.initTime;
+			}
+			elapsed = getElapsedTimePhrase(initTime, settings);
 
 			$this.html(settings.prependPhrase + ' ' + elapsed.str);
 
-			//Update interval to run depending on elapsed time for each element
-			var interval = getRunInterval(elapsed.diff, settings);
+			// Update interval to run depending on elapsed time for each element
+			//interval = getRunInterval(elapsed.diff, settings);
 
-			if(interval.run) {
-				setTimeout(function() {
-					renderElement($this, settings);
-				}, interval.time);
-			}
+			renderElement($this, settings);
 		});
 
 	}
@@ -385,17 +593,28 @@
 	 * @return void
 	 */
 	function renderElement($el, settings) {
-
-		var attrTime = $el.attr('data-elapsed-time');
-		var elapsed = getElapsedTimePhrase(attrTime, settings);
+		// Get updated phrase
+		// If attrTimeCache is set, override initTime
+		var initTime = null;
+		if(settings.inlineDate) {
+			attrTime = $el.attr('data-elapsed-time');
+			if(attrTime !== undefined) {
+				initTime = attrTime;
+			} else {
+				initTime = settings.initTime;
+			}
+		} else {
+			initTime = settings.initTime;
+		}
+		var elapsed = getElapsedTimePhrase(initTime, settings);
 
 		$el.html(settings.prependPhrase + ' ' + elapsed.str);
 
 		//Update interval to run depending on elapsed time for each element
 		var interval = getRunInterval(elapsed.diff, settings);
-
 		if(interval.run) {
 			setTimeout(function() {
+				console.log(interval);
 				renderElement($el, settings);
 			}, interval.time);
 		}
@@ -418,49 +637,58 @@
 	*/
 	function getRunInterval(diff, settings) {
 
-		if(settings.shortHand) {
-			var m = settings.shortHandValues['minute'];
-			var s = settings.shortHandValues['second'];
-			var diffMinute = diff[m];
-			var diffSecond = diff[s];
-		} else {
-			var diffMinute = diff.minute;
-			var diffSecond = diff.second;
-		}
-
+		// Build interval object to return
 		var interval = { 'run' : false, 'time' : settings.interval };
 
-		//If the specified number of minutes have passed, stop interval
-		if(diffMinute >= settings.stopIntervalMinutes) {
+		// Return default interval object if diff is less than or equal to zero
+		if(diff <= 0) return interval;
+
+		// Get key value for hours and seconds
+		var m = null, s = null;
+		if(settings.shortHand) {
+			m = settings.shortHandValues['minute'];
+			s = settings.shortHandValues['second'];
+		} else {
+			m = 'minute';
+			s = 'second';
+		}
+
+		// Get difference value for minutes and seconds
+		var diffMinute = jQuery.grep(diff, function(v){ return v.unit === m; })[0]['value'];
+		// Disable interval is minute is null
+		if(diffMinute === null) return interval;
+		var diffSecond = jQuery.grep(diff, function(v){ return v.unit === s; })[0]['value'];
+
+		// If the specified number of minutes have passed, stop interval
+		if(diffMinute >= settings.stopIntervalMinutes && !settings.clock) {
 			interval.run = false;
 		} else {
 			interval.run = true;
 		}
 
-		if(settings.delay === true && diffMinute < settings.stopIntervalMinutes) {
-			//Shorten interval for minutes & seconds while respecting initial load time
+		// Modify interval for minutes & seconds
+		if(settings.delay === true && diffMinute < settings.stopIntervalMinutes && !settings.clock) {
 			if(diffMinute >= 30) {
-				interval.time  =  1800000;
+				interval.time = 1800000;
 			} else if(diffMinute >= 10) {
-				//Update every 10 minutes
-				interval.time  =  (diffMinute > 10) ? (1800000 - (diffMinute * 60000)) : 600000;
+				// Update every 10 minutes
+				interval.time = (diffMinute > 10) ? (1800000 - (diffMinute * 60000)) : 600000;
 			} else if(diffMinute >= 5) {
-				//Update every 5 minute
-				interval.time  =  (diffMinute > 5) ? (600000 - (diffMinute * 60000)) : 300000;
+				// Update every 5 minute
+				interval.time = (diffMinute > 5) ? (600000 - (diffMinute * 60000)) : 300000;
 			} else if(diffMinute > 0) {
-				//Update every 1 minute
-				interval.time  = 60000;
+				// Update every 1 minute
+				interval.time = 60000;
 			} else if(diffSecond >= 30) {
-				//Update every 30 seconds
-				interval.time  = (diffSecond > 30) ? (60000 - (diffSecond * 1000)) : 30000;
-			}  else if(diffSecond >= 10) {
-				//Update every 10 seconds
-				interval.time  = (diffSecond > 10 ) ? (30000 - (diffSecond * 1000)) : 10000;
+				// Update every 30 seconds
+				interval.time = (diffSecond > 30) ? (60000 - (diffSecond * 1000)) : 30000;
+			} else if(diffSecond >= 10) {
+				// Update every 10 seconds
+				interval.time = (diffSecond > 10 ) ? (30000 - (diffSecond * 1000)) : 10000;
 			} else if(diffSecond >= 5) {
-				//Update every 5 seconds
-				interval.time  = (diffSecond > 5) ? (10000 - (diffSecond * 1000)) : 5000;
+				// Update every 5 seconds
+				interval.time = (diffSecond > 5) ? (10000 - (diffSecond * 1000)) : 5000;
 			}
-
 		}
 		return interval;
 	}
