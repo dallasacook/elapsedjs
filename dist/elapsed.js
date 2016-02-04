@@ -335,7 +335,7 @@
 				}
 			  	phrase += ' ' + (i < (diff.length - 1)) ? str + settings.seperator + ' ' : str + ' ';
 			} else {
-				// If settings.number settings is true, convert integer to string equivalent
+				// If settings.number setting is true, convert integer to string equivalent
 				if(settings.number === 'string') {
 					if(num < 10) {
 						str = numStr.single[num];
