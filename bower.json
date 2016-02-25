@@ -1,0 +1,22 @@
+{
+  "name": "elapsedjs",
+  "homepage": "https://github.com/dallasacook/elapsedjs",
+  "description": "jQuery plugin to display elapsed time",
+  "main": "dist/elapsed.js",
+  "moduleType": [],
+  "keywords": [
+    "elapsed",
+    "time"
+  ],
+  "authors": [
+    "Dallas Cook"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

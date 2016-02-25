@@ -28,6 +28,10 @@ Note: To view more current elapsed times, edit the timestamps in the index.html 
 
 ### Installation
 
+```
+bower install elapsedjs
+```
+
 To install Elapsed JS in your website or application:
 
 1. Include the elapsed.js file in an HTML script tag (don't forget to include jQuery)
