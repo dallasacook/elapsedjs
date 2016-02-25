@@ -1,6 +1,6 @@
 
 /**
- * Elapsed JS v 0.1
+ * Elapsed JS v 0.2
 *
 * A jQuery plugin that calculates the amount of time elapsed between
 * a given time, such as an event, and the current time which updates
@@ -8,7 +8,7 @@
 *
 * @class Elapsed
 * @author Dallas Cook
-* @date 5/6/2015
+* @date 2/24/2016
 *
 * GNU GENERAL PUBLIC LICENSE
 *
@@ -173,10 +173,6 @@
 		 * @default mixed
 		 */
 		clockOptions: {
-			century: {
-				display: true,
-				lower: 10 // Millennium
-			},
 			decade: {
 				display: true,
 				lower: 10 // Century
@@ -436,12 +432,6 @@
 
 		// Build time difference object
 		var diff = [{
-				unit: 'century',
-				func: function(t) {
-					return Math.floor(t / 3153600000);
-				},
-				value: null
-			}, {
 				unit: 'decade',
 				func: function(t) {
 					return Math.floor(t / 315360000);
@@ -456,8 +446,7 @@
 			}, {
 				unit: 'month',
 				func: function(t) {
-					return t / 2628000;
-					//return Math.floor(t / 2628000);
+					return Math.floor(t / 2628000);
 				},
 				value: null
 			}, {
@@ -509,7 +498,7 @@
 			for(var i = 0; i < diff.length; i++) {
 				if(diff[i]['value'] > 0) {
 					// If shortHand values are used, convert string for loop - only get short values for hours, minutes, seconds
-					unit = (settings.shortHand && i > 5) ? getObjectKey(settings.shortHandValues, diff[i]['unit']) : diff[i]['unit'];
+					unit = (settings.shortHand && i > 4) ? getObjectKey(settings.shortHandValues, diff[i]['unit']) : diff[i]['unit'];
 					// Copy upper unit value before overwriting
 					tmp = upper;
 					// Assign new upper unit value before overwriting upperUnit
@@ -614,7 +603,6 @@
 		var interval = getRunInterval(elapsed.diff, settings);
 		if(interval.run) {
 			setTimeout(function() {
-				console.log(interval);
 				renderElement($el, settings);
 			}, interval.time);
 		}
