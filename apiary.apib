@@ -1,0 +1,81 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# Borrower Wallet API
+
+Borrower Wallet mock endpoints
+
+## Dashboard Collection [/dashboard]
+
+### List All Dashboard Projections [GET]
+
++ Response 200 (application/json)
+
+        {
+          "lenderPerspective": {
+            "dti": 31,
+            "totalAssets": {
+              "amount": 30000
+            },
+            "loanEstimatedCreditProfileRange": "_680_TO_719",
+            "loanToValue": 80
+          },
+          "loanDetails": {
+            "addressReference": null,
+            "address": {
+              "streetAddress1": "123 Main St",
+              "streetAddress2": "Apt 1",
+              "city": "Denver",
+              "stateProvince": "CO",
+              "postalCode": "80203",
+              "postalCodePlusFour": "1234",
+              "countryCode": "US",
+              "validated": false
+            },
+            "numberOfUnits": 1,
+            "yearBuilt": 1984,
+            "county": "El Paso",
+            "acreage": 0.2,
+            "loanPurpose": "PURCHASE",
+            "subjectPropertyType": "DETACHED",
+            "subjectPropertyCategory": "PURCHASE",
+            "occupancyType": "PRIMARY",
+            "propertyType": "SINGLE_FAMILY",
+            "propertyUsage": "PRIMARY_RESIDENCE",
+            "propertyEstimatedValue": {
+              "amount": 320000
+            },
+            "applicantRequestedLoanAmount": {
+              "amount": 240000
+            },
+            "loanDownPayment": {
+              "amount": 80000
+            }
+          },
+          "productAndPricing": {
+            "monthlyPayment": {
+              "amount": 1078
+            },
+            "interestRate": 0.03265,
+            "apr": 0.03421,
+            "productName": "7\/1 Arm",
+            "estimatedClosingCosts": {
+              "amount": 4321
+            },
+            "principalAndInterest": {
+              "amount": 4000
+            },
+            "taxes": {
+              "amount": 100
+            },
+            "insurance": {
+              "amount": 200
+            },
+            "hoaCondoDues": {
+              "amount": 0
+            },
+            "mortgageInsurance": {
+              "amount": 75
+            }
+          }
+        }
